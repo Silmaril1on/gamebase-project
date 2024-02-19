@@ -13,7 +13,7 @@ function WelcomeUser({ user }) {
     setInterval(() => {
       setMount(true);
     }, 5500);
-  }, []);
+  }, [dispatch]);
 
   return (
     <section className="text-cream w-full flexCol items-center justify-around h-full">

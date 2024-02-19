@@ -12,9 +12,21 @@ function GamesList({ name, image, info, platforms }) {
       </div>
       <div className="flexCol items-center">
         <div className="flexRow mb-3 w-full justify-start px-4 space-x-3">
-          <img className="h-4 w-auto rounded-sm" src={platforms.ps} />
-          <img className="h-4 w-auto rounded-sm" src={platforms.steam} />
-          <img className="h-4 w-auto rounded-sm" src={platforms.xbox} />
+          <img
+            className="h-4 w-auto rounded-sm"
+            src={platforms.ps}
+            alt="platform"
+          />
+          <img
+            className="h-4 w-auto rounded-sm"
+            src={platforms.steam}
+            alt="platform"
+          />
+          <img
+            className="h-4 w-auto rounded-sm"
+            src={platforms.xbox}
+            alt="platform"
+          />
         </div>
         <div className="flexCol items-center">
           <h1 className="font-primary uppercase text-md w-full px-4">{name}</h1>

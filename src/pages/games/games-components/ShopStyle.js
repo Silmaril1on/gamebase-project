@@ -1,6 +1,5 @@
 import React from "react";
 import AnimatedLetters from "../../../components/AnimatedLetters";
-import LayoutButtons from "./LayoutButtons";
 
 function ShopStyle() {
   return (
