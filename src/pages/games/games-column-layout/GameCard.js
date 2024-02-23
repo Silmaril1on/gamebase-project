@@ -1,14 +1,11 @@
 import React from "react";
 import BorderSvg from "../../../components/BorderSvg";
 import { IoCartOutline, IoHeartOutline } from "react-icons/io5";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../../../features/gamesSlice";
-import CartWarning from "../../../components/CartWarning";
-import RegWarning from "../../../components/RegWarning";
 import { motion } from "framer-motion";
 
 function GameCard({ name, price, platforms, image, game, free }) {
-  const { warning, modal } = useSelector((store) => store.games);
   const dispatch = useDispatch();
 
   return (
@@ -51,7 +48,9 @@ function GameCard({ name, price, platforms, image, game, free }) {
           </button>
           <div className="flexCol child:font-light child:py-1 w-28 font-secondary capitalize child:text-xs md:child:text-sm child:flexRow child:cursor-pointer hover:child:font-bold child:duration-300">
             <button
-              onClick={() => dispatch(addToCart(game))}
+              onClick={() => {
+                dispatch(addToCart(game));
+              }}
               className="justify-center"
             >
               <IoCartOutline className="md:text-xl mr-1" />
@@ -64,8 +63,6 @@ function GameCard({ name, price, platforms, image, game, free }) {
           </div>
         </section>
       </motion.div>
-      {modal && <RegWarning />}
-      {warning && <CartWarning />}
     </>
   );
 }

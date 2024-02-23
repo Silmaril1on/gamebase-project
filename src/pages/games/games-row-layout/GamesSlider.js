@@ -9,7 +9,7 @@ function GamesSlider() {
   const { gamesData } = useSelector((store) => store.games);
 
   return (
-    <motion.section variants={fadeOut700} initial="hidden" animate="visible">
+    <section>
       <div className="space-y-2">
         {developerButtons.map((developer) => {
           const byDevelopers = gamesData.filter((game) => {
@@ -18,14 +18,20 @@ function GamesSlider() {
             }
           });
           return (
-            <div key={developer.id} className="">
-              <h1 className="text-3xl  uppercase m-3">{developer.name}</h1>
+            <motion.div
+              variants={fadeOut700}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              key={developer.id}
+            >
+              <h1 className="text-3xl uppercase m-3">{developer.name}</h1>
               <SortedGames data={byDevelopers} />
-            </div>
+            </motion.div>
           );
         })}
       </div>
-    </motion.section>
+    </section>
   );
 }
 

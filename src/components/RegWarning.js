@@ -16,7 +16,7 @@ function RegWarning() {
       variants={fadeOut700}
       initial="hidden"
       animate="visible"
-      className="fixed center w-full h-full top-0 z-4 bg-100 left-0 "
+      className="fixed center w-full h-full top-0 z-4 bg-400 left-0"
     >
       <div className="w-10/12 md:w-2/4 h-64 z-10 bg-black relative flex-col center">
         <CloseButton onClick={() => dispatch(closeModal())} />
@@ -25,7 +25,7 @@ function RegWarning() {
         </div>
         <AnimatedLetters
           text="Please, LOGIN"
-          className="font-primary text-2xl tracking-wider"
+          className="font-primary text-2xl tracking-wider text-cream"
         />
         <BorderSvg />
       </div>

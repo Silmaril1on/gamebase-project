@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import buttons from "../database/categoryButtons";
 const url = "https://silmaril1on.github.io/custom_data_API/games-data.json";
 
 export const getGames = createAsyncThunk("games/getGames", async () => {
@@ -21,7 +20,6 @@ const initialState = {
   tax: 0,
   totalPrice: 0,
   totalProducts: 0,
-  categoryButtons: buttons,
 };
 
 const gamesSlice = createSlice({
@@ -56,6 +54,7 @@ const gamesSlice = createSlice({
     closeModal: (state) => {
       state.warning = false;
       state.modal = false;
+      console.log("clicked");
     },
     clearCart: (state) => {
       state.cartItems = [];

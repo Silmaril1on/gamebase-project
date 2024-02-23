@@ -1,7 +1,7 @@
 import React from "react";
 
 function Accessories() {
-  return <div className="text-red-500 text-4xl">Accessories</div>;
+  return <h1 className="text-white mt-32">hello</h1>;
 }
 
 export default Accessories;

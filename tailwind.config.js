@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       colors: {
         cream: "#fcf5df",
+        valveRed: "#f74843",
       },
       backgroundColor: {
         skew: "rgba(151, 181, 225, 0.215)",
@@ -47,6 +48,7 @@ module.exports = {
       height: {
         300: "300px",
         400: "400px",
+        500: "500px",
         600: "600px",
         1000: "1000px",
       },

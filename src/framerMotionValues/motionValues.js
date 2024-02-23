@@ -129,6 +129,19 @@ export const slideUp = {
     },
   },
 };
+
+export const slideDown = {
+  hidden: {
+    y: "-10px",
+  },
+  visible: {
+    y: 0,
+    transition: {
+      duration: 0.4,
+    },
+  },
+};
+
 export const slideright = {
   hidden: {
     x: "-100%",

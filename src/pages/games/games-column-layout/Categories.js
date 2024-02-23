@@ -4,9 +4,9 @@ import { filterItems } from "../../../features/gamesSlice";
 import { motion } from "framer-motion";
 import { hideToggle } from "../../../framerMotionValues/motionValues";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import categoryButtons from "../../../database/categoryButtons";
 
 function Categories({ hide, setHide }) {
-  const { categoryButtons } = useSelector((store) => store.games);
   const [active, setActive] = useState(0);
   const dispatch = useDispatch();
 

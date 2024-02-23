@@ -15,7 +15,7 @@ function CartWarning() {
       animate="visible"
       className="fixed bottom-5 right-5 w-68 px-5 py-5 center bg-600 uppercase font-primary"
     >
-      <div className="p-5 relative bg-black">
+      <div className="p-5 relative bg-black text-cream">
         <h1>product is already in cart</h1>
         <BorderSvg />
       </div>

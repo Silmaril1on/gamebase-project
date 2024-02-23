@@ -30,10 +30,10 @@ function Games() {
   }, []);
 
   const left = () => {
-    setIndex(index === 0 ? games.length - 5 : index - 1);
+    setIndex(index === 0 ? 5 : index - 1);
   };
   const right = () => {
-    setIndex(index === games.length - 5 ? 0 : index + 1);
+    setIndex(index === 5 ? 0 : index + 1);
   };
 
   if (isLoading) {
@@ -56,7 +56,7 @@ function Games() {
 
   return (
     <main className="relative pb-5 my-20 overflow-hidden before:absolute before:bg-blue-800 before:w-1000 before:z-0 before:h-1000 before:top-28 before:left-36 before:skew-x-110">
-      <section className="overflow-hidden w-full relative">
+      <section className="overflow-hidden relative">
         <div className="mb-14 text-center">
           <AnimatedLetters
             className="text-cream text-5xl tracking-wide uppercase font-primary"
@@ -69,9 +69,9 @@ function Games() {
         </div>
         <motion.div
           initial={{ index }}
-          animate={{ translateX: `-${index * 15.5}rem` }}
+          animate={{ translateX: `-${index * 256}px` }}
           transition={{ duration: 0.5 }}
-          className="flexRow w-max relative z-5 py-3"
+          className="flex flex-row w-max justify-center items-center relative z-5 py-3"
         >
           {games.slice(0, 11).map((game) => {
             return <GamesList key={game.id} {...game} />;
