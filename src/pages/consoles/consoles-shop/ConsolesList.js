@@ -12,7 +12,7 @@ function ConsolesList() {
   }, [dispatch]);
 
   return (
-    <div className="grid grid-cols-8 gap-1">
+    <div className="grid grid-cols-2 md:grid-cols-8 gap-1 justify-items-center">
       {consolesData.map((item) => {
         return <ConsolesCard key={item.id} {...item} item={item} />;
       })}

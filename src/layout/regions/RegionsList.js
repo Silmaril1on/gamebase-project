@@ -14,7 +14,7 @@ function RegionsList() {
         variants={zoomIn200}
         initial="hidden"
         animate="visible"
-        className="w-2/4 h-auto bg-black flexCol items-center py-6"
+        className="w-full md:w-2/4 h-full bg-black flexCol items-center py-6"
       >
         <section className="flexRow w-10/12 justify-between">
           <h1 className="font-primary text-cream uppercase text-5xl ml-6 font-bold">
@@ -51,8 +51,8 @@ function RegLanguage() {
                       onClick={() => dispatch(changeIndex(id))}
                       className={
                         active === id
-                          ? "font-primary bg-amber-400 text-black indent-2 text-xl capitalize hover:bg-amber-400 hover:text-black duration-300 cursor-pointer p-1 w-auto inline"
-                          : "font-primary indent-2 text-xl capitalize hover:bg-amber-400 p-1 w-auto inline hover:text-black duration-300 cursor-pointer"
+                          ? "font-primary bg-amber-400 text-black indent-2 text-xs md:text-xl capitalize hover:bg-amber-400 hover:text-black duration-300 cursor-pointer p-1 w-auto inline"
+                          : "font-primary indent-2 text-xs md:text-xl capitalize hover:bg-amber-400 p-1 w-auto inline hover:text-black duration-300 cursor-pointer"
                       }
                     >
                       {lang.name}

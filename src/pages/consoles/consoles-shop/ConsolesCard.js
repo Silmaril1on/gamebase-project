@@ -7,7 +7,7 @@ import { addToCart } from "../../../features/gamesSlice";
 function ConsolesCard({ name, image, price, item }) {
   const dispatch = useDispatch();
   return (
-    <section className="w-44 h-64 relative group outline outline-offset-2 outline-none hover:cream-outline duration-300">
+    <section className="w-40 md:w-44 h-64 relative group outline outline-offset-2 outline-none hover:cream-outline duration-300 my-1">
       <div className="h-44 w-full">
         <img
           className="h-44 w-full object-cover"
