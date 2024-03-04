@@ -16,7 +16,7 @@ function GamesSlider() {
             if (game.developer === developer.developer) {
               return game;
             }
-            return;
+            return developer;
           });
 
           return (
