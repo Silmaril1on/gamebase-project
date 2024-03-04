@@ -18,6 +18,7 @@ function GamesSlider() {
             }
             return;
           });
+
           return (
             <motion.div
               variants={fadeOut700}
