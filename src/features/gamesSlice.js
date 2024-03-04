@@ -83,6 +83,7 @@ const gamesSlice = createSlice({
         totalProduct += item.amount;
         x = (total / 100) * 1;
         tax = total + x;
+        return item;
       });
       state.amount = amount;
       state.totalPrice = total;
