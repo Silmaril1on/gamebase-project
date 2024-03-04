@@ -18,10 +18,10 @@ function Categories({ hide, setHide }) {
         className={
           hide
             ? "w-full h-auto md:w-2/12 bg-stone-800 p-2 relative hidden"
-            : "w-full h-auto md:w-2/12 bg-stone-800 p-2 relative"
+            : "w-full h-auto md:w-2/12 bg-stone-800 p-2 sticky top-0 z-5"
         }
       >
-        <div className="center sticky top-0 flex-col overflow-hidden">
+        <div className="sticky top-0 overflow-hidden grid grid-cols-3 md:grid-cols-1 justify-items-center">
           <div className="bg-arabic absolute top-24 rotate-45 h-full w-96 -z-2"></div>
           {categoryButtons.map((button, index) => {
             return (
@@ -44,7 +44,7 @@ function Categories({ hide, setHide }) {
         </div>
       </motion.section>
       <button
-        className="sticky rounded-br-xl bg-stone-800 top-0 h-20 hover:bg-stone-700 duration-300"
+        className="sticky rounded-br-xl bg-stone-800 top-0 h-20 hover:bg-stone-700 duration-300 hidden md:block"
         onClick={() => setHide(!hide)}
       >
         {hide ? <FaAngleRight /> : <FaAngleLeft />}

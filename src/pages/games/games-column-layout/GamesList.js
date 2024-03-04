@@ -13,7 +13,7 @@ function GamesList({ hide }) {
   }, [dispatch]);
 
   return (
-    <section className="w-full ml-2 p-2">
+    <section className="w-full md:ml-2 p-2">
       <AnimatePresence>
         <motion.div
           layout

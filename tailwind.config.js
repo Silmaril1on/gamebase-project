@@ -45,6 +45,9 @@ module.exports = {
         secondary: "Josefin Sans",
         tetriary: "Cinzel",
       },
+      fontSize: {
+        xxs: "7px",
+      },
       height: {
         300: "300px",
         400: "400px",

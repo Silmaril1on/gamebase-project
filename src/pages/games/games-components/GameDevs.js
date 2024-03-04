@@ -17,13 +17,13 @@ function GameDevs() {
         Within the last decade or so, video games have come to be recognized as
         an art form deserving of critical analysis and praise.
       </p>
-      <div className="grid mt-5 grid-cols-5 grid-rows-2 justify-items-center w-auto gap-3">
+      <div className="grid mt-5 grid-cols-2 md:grid-cols-5 grid-rows-2 justify-items-center w-auto gap-1">
         {devs.map((dev) => {
           return (
             <NavLink
               to={dev.link}
               key={dev.id}
-              className="h-30 overflow-hidden relative mb-8 w-44 m-2 duration-300 hover:cream-outline outline-none brightness-75 hover:brightness-100 cursor-pointer"
+              className="h-30 overflow-hidden relative mb-8 w-40 md:w-44 m-2 duration-300 hover:cream-outline outline-none brightness-75 hover:brightness-100 cursor-pointer"
             >
               <motion.div
                 variants={slideOut}

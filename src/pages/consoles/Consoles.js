@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./console-components/Header";
 import { Helmet } from "react-helmet";
 import ConsolesSlideShow from "./console-components/ConsolesSlideShow";
+import ConsolesShop from "./consoles-shop/ConsolesShop";
 
 function Consoles() {
   return (
@@ -11,6 +12,7 @@ function Consoles() {
       </Helmet>
       <Header />
       <ConsolesSlideShow />
+      <ConsolesShop />
     </main>
   );
 }

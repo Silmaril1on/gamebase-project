@@ -3,9 +3,8 @@ import BorderSvg from "../../../components/BorderSvg";
 import { addToCart } from "../../../features/gamesSlice";
 import { IoCartOutline, IoHeartOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { motion } from "framer-motion";
 
-function GameCard({ image, name, platforms, price, free, game }) {
+function GameCard({ image, name, platforms, price, free, item }) {
   const dispatch = useDispatch();
 
   return (
@@ -46,7 +45,7 @@ function GameCard({ image, name, platforms, price, free, game }) {
             </button>
             <div className="flexCol child:font-light child:py-1 w-28 font-secondary capitalize child:text-xs md:child:text-sm child:flexRow child:cursor-pointer hover:child:font-bold child:duration-300">
               <button
-                onClick={() => dispatch(addToCart(game))}
+                onClick={() => dispatch(addToCart(item))}
                 className="justify-center"
               >
                 <IoCartOutline className="md:text-xl mr-1" />

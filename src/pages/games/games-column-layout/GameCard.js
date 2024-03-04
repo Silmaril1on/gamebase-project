@@ -18,7 +18,7 @@ function GameCard({ name, price, platforms, image, game, free }) {
         transition={{ duration: 0.5 }}
         className="w-24 h-48 md:w-40 mb-4 bg-black md:h-auto relative cursor-pointer group outline outline-offset-2 outline-none hover:cream-outline duration-300"
       >
-        <div className="w-24 h-20 md:h-52 md:w-40 center">
+        <div className="w-24 h-32 md:h-52 md:w-40 center">
           <img
             className="w-full h-full object-cover object-top"
             src={image}
@@ -31,7 +31,7 @@ function GameCard({ name, price, platforms, image, game, free }) {
             {platforms.xbox ? <img src={platforms.xbox} alt="platform" /> : ""}
             {platforms.pc ? <img src={platforms.pc} alt="platform" /> : ""}
           </div>
-          <h1 className="text-xs md:text-sm font-bold uppercase">{name}</h1>
+          <h1 className="text-xxs md:text-sm font-bold uppercase">{name}</h1>
           {price === null ? (
             ""
           ) : (

@@ -6,20 +6,31 @@ import RightButton from "../../../components/RightButton";
 import LeftButton from "../../../components/LeftButton";
 import { motion } from "framer-motion";
 import AnimatedLetters from "../../../components/AnimatedLetters";
+import Dots from "./Dots";
 
 const url = "https://silmaril1on.github.io/custom_data_API/games-data.json";
 
-function Games() {
+function Test() {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [games, setGames] = useState([]);
   const [index, setIndex] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(window.innerWidth / 256);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios(url);
-        setGames(response.data);
+        const data = response.data || [];
+        const games = [];
+        const totalSize = 20;
+        for (let a = 0; a < totalSize; a++) {
+          data.forEach((item) => {
+            games.push({ ...item, key: `${Math.random()}${a}` });
+          });
+        }
+        setGames(games);
+        setIndex(data.length * (totalSize / 2));
       } catch (error) {
         setIsError(true);
       }
@@ -28,16 +39,37 @@ function Games() {
     fetchData();
   }, []);
 
-  const left = () => {
-    setIndex(index === 0 ? 5 : index - 1);
+  useEffect(() => {
+    const onResize = () => {
+      setItemsPerPage(window.innerWidth / 256);
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const addFakeItems = () => {
+    const gamesToAdd = [];
+    [...games].forEach((item) => {
+      gamesToAdd.push({ ...item, key: `${Math.random()}${item.id}` });
+    });
+    setGames([...games, ...gamesToAdd]);
   };
+
+  const left = () => {
+    setIndex(index == 0 ? games.length / 2 : index - 1);
+  };
+
   const right = () => {
-    setIndex(index === 5 ? 0 : index + 1);
+    if (index == games.length - (itemsPerPage + 1)) {
+      addFakeItems();
+    }
+    setIndex(index + 1);
   };
 
   if (isLoading) {
     return (
-      <div className="w-full h-64 mt-20 pt-20 ">
+      <div className="w-full h-64 mt-20 pt-20">
         <LogoOne />
       </div>
     );
@@ -72,8 +104,8 @@ function Games() {
           transition={{ duration: 0.5 }}
           className="flex flex-row w-max justify-center items-center relative z-5 py-3"
         >
-          {games.slice(0, 11).map((game) => {
-            return <GamesList key={game.id} {...game} />;
+          {games.map((game) => {
+            return <GamesList key={game.key} {...game} />;
           })}
         </motion.div>
         <div className="w-full h-full absolute top-0 flex items-center justify-between px-10">
@@ -81,8 +113,9 @@ function Games() {
           <RightButton onClick={right} />
         </div>
       </section>
+      <Dots games={games} index={index} setIndex={setIndex} />
     </main>
   );
 }
 
-export default Games;
+export default Test;

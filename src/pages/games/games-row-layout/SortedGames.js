@@ -24,7 +24,7 @@ function SortedGames({ data }) {
         className="flex justify-start flex-row relative z-2 py-2 w-max border"
       >
         {games.map((item) => {
-          return <GameCard key={item.id} {...item} />;
+          return <GameCard key={item.id} {...item} item={item} />;
         })}
       </motion.div>
       <div className="z-1 px-5 absolute top-0 left-0 w-full h-full flex flex-row items-center justify-between">
