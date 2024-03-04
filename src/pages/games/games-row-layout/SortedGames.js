@@ -6,7 +6,7 @@ import RightButton from "../../../components/RightButton";
 
 function SortedGames({ data }) {
   const [index, setIndex] = useState(0);
-  const [games, setGames] = useState(data);
+  const [games] = useState(data);
 
   const left = () => {
     setIndex(index === 0 ? games.length - 1 : index - 1);

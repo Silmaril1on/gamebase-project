@@ -6,7 +6,7 @@ import ConsolesThumbNail from "./ConsolesThumbNail";
 
 function ConsolesSlideShow() {
   const [index, setIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
+  const [direction] = useState(0);
   const [consoles] = useState(consolesSlideShowData);
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { filterItems } from "../../../features/gamesSlice";
 import { motion } from "framer-motion";
 import { hideToggle } from "../../../framerMotionValues/motionValues";
