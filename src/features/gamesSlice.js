@@ -54,7 +54,6 @@ const gamesSlice = createSlice({
     closeModal: (state) => {
       state.warning = false;
       state.modal = false;
-      console.log("clicked");
     },
     clearCart: (state) => {
       state.cartItems = [];

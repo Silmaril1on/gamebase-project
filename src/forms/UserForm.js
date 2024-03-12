@@ -6,14 +6,13 @@ import UserContainer from "./UserContainer";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 
 function UserForm() {
-  const [user, setUser] = useState([]);
   const [userProfile, setUserProfile] = useState(false);
-  const { userModal } = useSelector((store) => store.user);
+  const { userModal, newUser } = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
   return (
     <>
-      {user.name ? (
+      {newUser[0] ? (
         <div
           onClick={() => setUserProfile(!userProfile)}
           className="text-cream cursor-pointer"
@@ -24,10 +23,10 @@ function UserForm() {
             ) : (
               <FaCaretDown className="mr-1" />
             )}
-            {user.name}
+            {newUser[0].name}
           </h1>
           <h5 className="text-xs text-end font-primary text-cream">
-            {user.email}
+            {newUser[0].email}
           </h5>
         </div>
       ) : (
@@ -38,7 +37,7 @@ function UserForm() {
           <h1 className="text-cream">sign in</h1>
         </section>
       )}
-      {userModal && <UserRegister setUser={setUser} user={user} />}
+      {userModal && <UserRegister />}
       {userProfile && <UserContainer setUserProfile={setUserProfile} />}
     </>
   );

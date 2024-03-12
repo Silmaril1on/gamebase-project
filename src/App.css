@@ -44,6 +44,9 @@
   .center {
     @apply items-center justify-center flex;
   }
+  .formik-button {
+    @apply rounded-lg bg-violet-700 font-primary uppercase text-2xl px-10 py-1 hover:bg-violet-900 duration-300 tracking-wide;
+  }
 }
 
 @layer utilities {

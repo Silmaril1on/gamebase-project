@@ -2,12 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   userModal: false,
+  newUser: [],
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    getUser: (state, action) => {
+      state.newUser.push(action.payload);
+    },
     openUserModal: (state) => {
       state.userModal = true;
     },
@@ -17,6 +21,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { openUserModal, closeUserModal, submit } = userSlice.actions;
+export const { openUserModal, closeUserModal, getUser } = userSlice.actions;
 
 export default userSlice.reducer;

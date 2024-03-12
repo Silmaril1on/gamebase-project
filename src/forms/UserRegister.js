@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CloseButton from "../components/CloseButton";
 import { useDispatch } from "react-redux";
 import { closeUserModal } from "../features/user";
-import Form from "./Form";
+import FormikForm from "./FormikForm";
 import WelcomeUser from "./WelcomeUser";
 import { motion } from "framer-motion";
 import { fadeOut200 } from "../framerMotionValues/motionValues";
@@ -23,7 +23,7 @@ function UserRegister({ setUser, user }) {
         {formUser ? (
           <WelcomeUser user={user} />
         ) : (
-          <Form setUser={setUser} setFormUser={setFormUser} />
+          <FormikForm setUser={setUser} setFormUser={setFormUser} />
         )}
         <h1 className="text-blue-500 w-full text-center mb-2 font-primary">
           Help/Site Map
