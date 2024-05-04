@@ -1,12 +1,67 @@
 import React from "react";
 import BorderSvg from "../../../components/BorderSvg";
 import { IoCartOutline, IoHeartOutline } from "react-icons/io5";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../../features/gamesSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
+import { db } from "../../../firebase/firebase";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { NavLink } from "react-router-dom";
+import { openModal } from "../../../features/gamesSlice";
 
-function GameCard({ name, price, platforms, image, game, free }) {
+function GameCard({
+  name,
+  id,
+  price,
+  platforms,
+  image,
+  game,
+  developer,
+  free,
+  year,
+  info,
+  amount,
+}) {
   const dispatch = useDispatch();
+  const { userReg } = useSelector((store) => store.user);
+
+  const gameRef = doc(db, "userGames", `${userReg?.email}`);
+
+  const saveShow = async () => {
+    if (userReg?.email) {
+      await updateDoc(gameRef, {
+        savedGames: arrayUnion({
+          id: id,
+          title: name,
+          img: image,
+          price: price,
+          platforms: platforms,
+          developer: developer,
+          info: info,
+          year: year,
+        }),
+      });
+    } else {
+      dispatch(openModal());
+    }
+  };
+
+  const addToCart = async () => {
+    if (userReg?.email) {
+      await updateDoc(gameRef, {
+        cartGames: arrayUnion({
+          id: id,
+          name: name,
+          price: price,
+          image: image,
+          info,
+          year: year,
+          amount: amount,
+        }),
+      });
+    } else {
+      dispatch(openModal());
+    }
+  };
 
   return (
     <>
@@ -42,23 +97,20 @@ function GameCard({ name, price, platforms, image, game, free }) {
           </h6>
         </article>
         <section className="space-y-2 backdrop-blur-sm absolute w-full h-full top-0 left-0 bg-600 flexCol items-center scale-0 group group-hover:scale-100 duration-300 justify-center">
-          <button className="cream-button text-xs md:text-sm">
-            <BorderSvg />
-            visit page
-          </button>
-          <div className="flexCol child:font-light child:py-1 w-28 font-secondary capitalize child:text-xs md:child:text-sm child:flexRow child:cursor-pointer hover:child:font-bold child:duration-300">
-            <button
-              onClick={() => {
-                dispatch(addToCart(game));
-              }}
-              className="justify-center"
-            >
+          <NavLink to="/gamepage" state={{ game }}>
+            <button className="cream-button text-xs md:text-sm">
+              <BorderSvg />
+              visit page
+            </button>
+          </NavLink>
+          <div className="flexCol w-full child:font-light child:py-1 font-secondary capitalize child:text-xs md:child:text-sm child:flexRow child:cursor-pointer hover:child:text-amber-400 child:duration-300">
+            <button onClick={addToCart} className="justify-center">
               <IoCartOutline className="md:text-xl mr-1" />
               Add to cart
             </button>
-            <button className="justify-center">
+            <button onClick={saveShow} className="justify-center">
               <IoHeartOutline className="md:text-xl mr-1" />
-              Wishlist
+              Add To Wishlist
             </button>
           </div>
         </section>

@@ -57,11 +57,11 @@ function Test() {
   };
 
   const left = () => {
-    setIndex(index == 0 ? games.length / 2 : index - 1);
+    setIndex(index === 0 ? games.length / 2 : index - 1);
   };
 
   const right = () => {
-    if (index == games.length - (itemsPerPage + 1)) {
+    if (index === games.length - (itemsPerPage + 1)) {
       addFakeItems();
     }
     setIndex(index + 1);

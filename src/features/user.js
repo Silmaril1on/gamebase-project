@@ -1,8 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userModal: false,
-  newUser: [],
+  userReg: null,
+  userProfile: [],
+  userWishlistGames: [],
+  userCartItems: [],
+  amount: 0,
+  tax: 0,
+  totalPrice: 0,
+  totalProducts: 0,
 };
 
 const userSlice = createSlice({
@@ -10,17 +16,60 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     getUser: (state, action) => {
-      state.newUser.push(action.payload);
+      state.userReg = action.payload;
     },
-    openUserModal: (state) => {
-      state.userModal = true;
+    getUserProfile: (state, action) => {
+      state.userProfile = action.payload;
     },
-    closeUserModal: (state) => {
-      state.userModal = false;
+    logOutUser: (state) => {
+      state.userProfile = null;
+      state.userReg = null;
+    },
+    getUserWishlistGames: (state, action) => {
+      state.userWishlistGames = action.payload;
+    },
+    getUserCartGames: (state, action) => {
+      state.userCartItems = action.payload;
+    },
+    increase: (state, { payload }) => {
+      const item = state.userCartItems.find((item) => item.id === payload.id);
+      item.amount = item.amount + 1;
+    },
+    decrease: (state, { payload }) => {
+      const item = state.userCartItems.find((item) => item.id === payload.id);
+      item.amount = item.amount - 1;
+    },
+    calculateTotals: (state) => {
+      let amount = 0;
+      let total = 0;
+      let totalProduct = 0;
+      let x = 0;
+      let tax = 0;
+      state.userCartItems.map((item) => {
+        amount += item.amount;
+        total += item.amount * item.price;
+        totalProduct += item.amount;
+        x = (total / 100) * 1;
+        tax = total + x;
+        return item;
+      });
+      state.amount = amount;
+      state.totalPrice = total;
+      state.totalProducts = totalProduct;
+      state.tax = tax;
     },
   },
 });
 
-export const { openUserModal, closeUserModal, getUser } = userSlice.actions;
+export const {
+  getUser,
+  getUserProfile,
+  logOutUser,
+  getUserWishlistGames,
+  getUserCartGames,
+  increase,
+  decrease,
+  calculateTotals,
+} = userSlice.actions;
 
 export default userSlice.reducer;

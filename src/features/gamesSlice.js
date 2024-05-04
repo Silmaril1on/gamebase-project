@@ -9,17 +9,12 @@ export const getGames = createAsyncThunk("games/getGames", async () => {
 
 const initialState = {
   gamesData: [],
-  cartItems: [],
   filteredGames: [],
   isLoading: true,
   isError: false,
   warning: false,
   userWarning: false,
   modal: false,
-  amount: 0,
-  tax: 0,
-  totalPrice: 0,
-  totalProducts: 0,
 };
 
 const gamesSlice = createSlice({
@@ -35,59 +30,15 @@ const gamesSlice = createSlice({
         );
       }
     },
-    addToCart: (state, action) => {
-      const itemID = state.cartItems.findIndex(
-        (item) => item.id === action.payload.id
-      );
-      if (state.userWarning === false) {
-        state.modal = true;
-      }
-      if (itemID >= 0) {
-        state.warning = true;
-      } else {
-        state.cartItems.push(action.payload);
-      }
-    },
     registration: (state) => {
       state.userWarning = true;
+    },
+    openModal: (state) => {
+      state.modal = true;
     },
     closeModal: (state) => {
       state.warning = false;
       state.modal = false;
-    },
-    clearCart: (state) => {
-      state.cartItems = [];
-    },
-    removeItem: (state, action) => {
-      const itemId = action.payload;
-      state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
-    },
-    increase: (state, { payload }) => {
-      const item = state.cartItems.find((item) => item.id === payload.id);
-      item.amount = item.amount + 1;
-    },
-    decrease: (state, { payload }) => {
-      const item = state.cartItems.find((item) => item.id === payload.id);
-      item.amount = item.amount - 1;
-    },
-    calculateTotals: (state) => {
-      let amount = 0;
-      let total = 0;
-      let totalProduct = 0;
-      let x = 0;
-      let tax = 0;
-      state.cartItems.map((item) => {
-        amount += item.amount;
-        total += item.amount * item.price;
-        totalProduct += item.amount;
-        x = (total / 100) * 1;
-        tax = total + x;
-        return item;
-      });
-      state.amount = amount;
-      state.totalPrice = total;
-      state.totalProducts = totalProduct;
-      state.tax = tax;
     },
   },
   extraReducers: (builder) => {
@@ -106,16 +57,7 @@ const gamesSlice = createSlice({
   },
 });
 
-export const {
-  addToCart,
-  removeItem,
-  filterItems,
-  clearCart,
-  calculateTotals,
-  increase,
-  decrease,
-  closeModal,
-  registration,
-} = gamesSlice.actions;
+export const { filterItems, closeModal, registration, openModal } =
+  gamesSlice.actions;
 
 export default gamesSlice.reducer;

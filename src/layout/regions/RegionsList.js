@@ -1,13 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import CloseButton from "../../components/CloseButton";
 import regionsData from "../../database/regions";
 import { motion } from "framer-motion";
 import { zoomIn200 } from "../../framerMotionValues/motionValues";
-import { useDispatch, useSelector } from "react-redux";
-import { changeIndex, closeModal } from "../../features/modal";
 
-function RegionsList() {
-  const dispatch = useDispatch();
+function RegionsList({ setIsOpen }) {
   return (
     <div className="bg-400 w-full h-full fixed top-0 left-0 flex items-center justify-center">
       <motion.div
@@ -20,7 +17,7 @@ function RegionsList() {
           <h1 className="font-primary text-cream uppercase text-5xl ml-6 font-bold">
             select region
           </h1>
-          <div onClick={() => dispatch(closeModal())}>
+          <div onClick={() => setIsOpen(false)}>
             <CloseButton />
           </div>
         </section>
@@ -33,8 +30,8 @@ function RegionsList() {
 }
 
 function RegLanguage() {
-  const { active } = useSelector((store) => store.modal);
-  const dispatch = useDispatch();
+  const [active, setActive] = useState(0);
+
   return (
     <div className="flexCol items-center text-cream">
       {regionsData.map((reg) => {
@@ -48,7 +45,7 @@ function RegLanguage() {
                 return (
                   <div key={id}>
                     <h4
-                      onClick={() => dispatch(changeIndex(id))}
+                      onClick={() => setActive(lang.id)}
                       className={
                         active === id
                           ? "font-primary bg-amber-400 text-black indent-2 text-xs md:text-xl capitalize hover:bg-amber-400 hover:text-black duration-300 cursor-pointer p-1 w-auto inline"

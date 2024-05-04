@@ -10,7 +10,7 @@ import {
 
 function Socials() {
   return (
-    <section className="flexRow items-center child:cursor-pointer child:text-cream child:duration-300 space-x-2 mx-8">
+    <section className="flexRow items-center child:cursor-pointer child:text-cream child:duration-300 space-x-2 mx-3">
       <FaYoutube className="hover:text-red-600" />
       <FaInstagram className="hover:text-purple-400" />
       <FaTwitter className="hover:text-blue-500" />

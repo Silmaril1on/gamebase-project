@@ -47,10 +47,37 @@
   .formik-button {
     @apply rounded-lg bg-violet-700 font-primary uppercase text-2xl px-10 py-1 hover:bg-violet-900 duration-300 tracking-wide;
   }
+  .form-container {
+    @apply flex flex-col py-2 w-full;
+  }
+  .strong {
+    @apply mx-2 uppercase text-cream hover:text-amber-400 cursor-pointer duration-300;
+  }
+  .h6 {
+    @apply font-light capitalize m-2 hover:underline cursor-pointer hover:text-amber-400 text-lg;
+  }
+  .settings-style {
+    @apply flex flex-row items-center justify-end space-x-2 hover:bg-500 *:text-xl *:capitalize *:hover:text-amber-400 *:duration-300 pr-2 relative before:absolute  before:w-1 before:h-full before:bg-amber-400 before:left-0 before:-top-full  before:hover:top-0 before:duration-300 overflow-hidden;
+  }
 }
 
 @layer utilities {
   .polygon {
     clip-path: polygon(0% 50%, 11% 0%, 89% 0%, 100% 50%, 89% 100%, 11% 100%);
+  }
+}
+
+@layer base {
+  input {
+    background: #f1eded21;
+    border-radius: 10px;
+    outline: none;
+    padding: 3px 10px;
+    font-weight: 200;
+    backdrop-filter: 20px;
+  }
+
+  input:focus {
+    background: #f1eded13;
   }
 }
