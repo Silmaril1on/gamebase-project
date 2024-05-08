@@ -58,11 +58,11 @@ function Products() {
             <NavLink to={item.link} key={index}>
               <motion.div
                 variants={zoomIn}
-                className="cursor-pointer h-50 w-64 group outline-none rounded-md hover:blue-outline duration-300"
+                className="cursor-pointer h-50 w-64 group outline-none hover:cream-outline duration-300"
               >
-                <div className=" h-44 w-full relative rounded-md overflow-hidden">
+                <div className=" h-44 w-full relative overflow-hidden">
                   <img
-                    className="w-full h-full rounded-md object-cover group-hover:scale-110 duration-300"
+                    className="w-full h-full object-cover group-hover:scale-110 duration-300"
                     src={item.image}
                     alt="consoles"
                   />

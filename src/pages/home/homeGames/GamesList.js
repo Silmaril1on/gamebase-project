@@ -1,12 +1,14 @@
 import React from "react";
+import Button from "../../../components/Button";
+import { NavLink } from "react-router-dom";
 
-function GamesList({ name, image, info, platforms }) {
+function GamesList({ name, image, info, platforms, game }) {
   return (
-    <section className="relative w-64 h-full group px-2">
-      <div className="flexCol rounded-xl items-center justify-end bg-stone-800 hover:bg-stone-700 outline-none hover:stone-outline duration-300">
+    <section className="relative w-64 h-full group px-2 ">
+      <div className="flexCol items-center justify-end bg-stone-800 hover:bg-stone-700 outline-none hover:cream-outline duration-300">
         <div className="w-56 h-72 group relative">
           <img
-            className="w-full h-full object-cover -top-10 duration-300 absolute z-2 border border-stone-500 group-hover:-top-14 "
+            className="w-full h-full object-cover -top-10 duration-300 absolute z-2 border border-cream group-hover:-top-14 "
             src={image}
             alt={name}
           />
@@ -26,7 +28,9 @@ function GamesList({ name, image, info, platforms }) {
             </p>
           </div>
           <div className="mb-4 relative z-2">
-            <button className="primary-button text-xs">find our more</button>
+            <NavLink to="/gamepage" state={{ game: game }}>
+              <Button className="cream-button text-xs">find our more</Button>
+            </NavLink>
           </div>
         </div>
       </div>

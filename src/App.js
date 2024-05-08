@@ -14,6 +14,8 @@ import { useSelector } from "react-redux";
 import Index from "./authentication/Index";
 import Wishlist from "./pages/userwishlist/Wishlist";
 import GamePage from "./pages/gamedetails/GamePage";
+import UserReviews from "./pages/gamedetails/sideinfo/userreviews/UserReviews";
+import UserProfile from "./pages/userprofile/UserProfile";
 
 function App() {
   const { modal, warning } = useSelector((store) => store.games);
@@ -31,6 +33,8 @@ function App() {
         <Route path="/registration" element={<Index />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/gamepage" element={<GamePage />} />
+        <Route path="/userreviews" element={<UserReviews />} />
+        <Route path="/profile" element={<UserProfile />} />
       </Routes>
       <Footer />
       {modal && <RegWarning />}

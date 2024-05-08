@@ -8,17 +8,19 @@ import { db } from "../../../firebase/firebase";
 import { NavLink } from "react-router-dom";
 
 function GameCard({
-  name,
+  category,
   id,
+  name,
+  image,
   price,
   platforms,
-  image,
-  game,
   developer,
-  free,
   year,
   info,
   amount,
+  banner,
+  game,
+  free,
 }) {
   const dispatch = useDispatch();
   const { userReg } = useSelector((store) => store.user);
@@ -28,14 +30,17 @@ function GameCard({
     if (userReg?.email) {
       await updateDoc(gameRef, {
         savedGames: arrayUnion({
+          category: category,
           id: id,
-          title: name,
-          img: image,
+          name: name,
+          image: image,
           price: price,
           platforms: platforms,
           developer: developer,
-          info: info,
           year: year,
+          info: info,
+          amount: amount,
+          banner: banner,
         }),
       });
     } else {
@@ -63,7 +68,7 @@ function GameCard({
 
   return (
     <div className="px-2 w-44 my-3">
-      <div className="w-24 h-48 md:w-40 bg-black md:h-80 relative cursor-pointer group outline outline-offset-2 outline-none hover:cream-outline duration-300">
+      <div className="w-24 h-48 md:w-40 bg-black md:h-80 relative cursor-pointer group duration-300">
         <div className="w-24 h-20 md:h-56 md:w-40 center">
           <img
             className="w-full h-full object-cover object-top"
@@ -94,7 +99,7 @@ function GameCard({
               visit page
             </button>
           </NavLink>
-          <div className="flexCol child:font-light child:py-1 w-28 font-secondary capitalize child:text-xs md:child:text-sm child:flexRow child:cursor-pointer hover:child:font-bold child:duration-300">
+          <div className="flexCol child:font-light child:py-1 w-28 font-secondary capitalize child:text-xs md:child:text-sm child:flexRow child:cursor-pointer hover:child:text-amber-400 child:duration-300">
             <button onClick={addToCart} className="justify-center">
               <IoCartOutline className="md:text-xl mr-1" />
               Add to cart

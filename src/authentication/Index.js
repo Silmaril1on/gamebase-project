@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CloseButton from "../components/CloseButton";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Registration from "./registration/Registration";
 import WelcomeUser from "./WelcomeUser";
 

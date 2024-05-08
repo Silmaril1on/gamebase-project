@@ -1,12 +1,13 @@
 import React from "react";
-import GameDetails from "./GameDetails";
+import GameDetails from "./gamecontent/GameDetails";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import SideInfo from "./SideInfo";
+import SideInfo from "./sideinfo/SideInfo";
 
 function GamePage() {
   const location = useLocation();
   const details = location.state.game;
+
   return (
     <main className="relative">
       <Helmet>
@@ -14,7 +15,7 @@ function GamePage() {
       </Helmet>
       <section className="space-x-1 flex flex-row overflow-hidden">
         <GameDetails details={details} />
-        <SideInfo />
+        <SideInfo details={details} />
       </section>
     </main>
   );

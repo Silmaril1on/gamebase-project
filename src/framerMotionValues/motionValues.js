@@ -52,7 +52,7 @@ export const fadeOut200 = {
   visible: {
     opacity: 1,
     transition: {
-      duration: 0.2,
+      duration: 0.4,
       staggerChildren: 0.1,
       delayChildren: 0.1,
     },

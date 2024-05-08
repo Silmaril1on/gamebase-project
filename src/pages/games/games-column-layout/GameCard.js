@@ -9,17 +9,19 @@ import { NavLink } from "react-router-dom";
 import { openModal } from "../../../features/gamesSlice";
 
 function GameCard({
-  name,
+  category,
   id,
+  name,
+  image,
   price,
   platforms,
-  image,
-  game,
   developer,
-  free,
   year,
   info,
   amount,
+  banner,
+  game,
+  free,
 }) {
   const dispatch = useDispatch();
   const { userReg } = useSelector((store) => store.user);
@@ -30,14 +32,17 @@ function GameCard({
     if (userReg?.email) {
       await updateDoc(gameRef, {
         savedGames: arrayUnion({
+          category: category,
           id: id,
-          title: name,
-          img: image,
+          name: name,
+          image: image,
           price: price,
           platforms: platforms,
           developer: developer,
-          info: info,
           year: year,
+          info: info,
+          amount: amount,
+          banner: banner,
         }),
       });
     } else {
@@ -53,7 +58,7 @@ function GameCard({
           name: name,
           price: price,
           image: image,
-          info,
+          info: info,
           year: year,
           amount: amount,
         }),
@@ -71,7 +76,7 @@ function GameCard({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-24 h-48 md:w-40 mb-4 bg-black md:h-auto relative cursor-pointer group outline outline-offset-2 outline-none hover:cream-outline duration-300"
+        className="w-24 h-48 md:w-40 mb-4 bg-black md:h-auto relative cursor-pointer group duration-300"
       >
         <div className="w-24 h-32 md:h-52 md:w-40 center">
           <img

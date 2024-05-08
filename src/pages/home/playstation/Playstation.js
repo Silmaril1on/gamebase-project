@@ -1,5 +1,6 @@
 import React from "react";
 import Ps from "../../../components/Ps";
+import Button from "../../../components/Button";
 import back from "../../../assets/content.webp";
 import { motion } from "framer-motion";
 import { slideright } from "../../../framerMotionValues/motionValues";
@@ -26,9 +27,7 @@ function Playstation() {
           Check out this month's biggest releases along with dedicated features,
           guides and more.
         </p>
-        <button className="primary-button text-xs md:text-lg">
-          find out more
-        </button>
+        <Button> find out more</Button>
       </motion.article>
     </section>
   );

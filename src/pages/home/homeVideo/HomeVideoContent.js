@@ -5,6 +5,7 @@ import RightButton from "../../../components/RightButton";
 import { AnimatePresence, motion } from "framer-motion";
 import { slideShow } from "../../../framerMotionValues/motionValues";
 import VideoThumbNail from "./VideoThumbNail";
+import Button from "../../../components/Button";
 
 function HomeVideoContent() {
   const [index, setIndex] = useState(0);
@@ -65,7 +66,7 @@ function HomeVideoContent() {
             <LeftButton onClick={left} />
             <RightButton onClick={right} />
           </div>
-          <button className="primary-button md:mt-7">buy know</button>
+          <Button>buy now</Button>
         </section>
       </section>
       <VideoThumbNail setIndex={setIndex} index={index} />

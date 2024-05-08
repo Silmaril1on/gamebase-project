@@ -54,7 +54,7 @@ function Games() {
   }
 
   return (
-    <main className="relative pb-5 my-20 overflow-hidden before:absolute before:bg-blue-800 before:w-1000 before:z-0 before:h-1000 before:top-28 before:left-36 before:skew-x-110">
+    <main className="relative pb-5 my-20 overflow-hidden before:absolute before:bg-amber-400 before:w-1000 before:z-0 before:h-1000 before:top-28 before:left-36 before:skew-x-110">
       <section className="overflow-hidden relative">
         <div className="mb-14 text-center">
           <AnimatedLetters
@@ -73,7 +73,7 @@ function Games() {
           className="flex flex-row w-max justify-center items-center relative z-5 py-3"
         >
           {games.slice(0, 11).map((game) => {
-            return <GamesList key={game.id} {...game} />;
+            return <GamesList key={game.id} {...game} game={game} />;
           })}
         </motion.div>
         <div className="w-full h-full absolute top-0 flex items-center justify-between px-10">

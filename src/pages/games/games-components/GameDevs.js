@@ -7,8 +7,7 @@ import { NavLink } from "react-router-dom";
 
 function GameDevs() {
   return (
-    <section className="center overflow-hidden flex-col my-10 relative text-cream bg-stone-800 py-5">
-      <div className="absolute w-3/4 h-full bg-arabic -left-64 -top-48 -rotate-45"></div>
+    <section className="center overflow-hidden flex-col my-10 relative text-black bg-amber-400 py-5">
       <AnimatedLetters
         text="explore game developers"
         className="font-primary text-4xl uppercase"

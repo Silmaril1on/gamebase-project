@@ -30,6 +30,12 @@ function NavigationHeader() {
   }, [userReg?.email, dispatch]);
 
   useEffect(() => {
+    onSnapshot(doc(db, "users", `${userReg?.email}`), (doc) => {
+      dispatch(getUserProfile(doc.data()?.userProfile));
+    });
+  }, [userReg?.email, dispatch]);
+
+  useEffect(() => {
     onSnapshot(doc(db, "userGames", `${userReg?.email}`), (doc) => {
       dispatch(getUserCartGames(doc.data()?.cartGames));
     });
@@ -69,7 +75,7 @@ function NavigationHeader() {
   }, [dispatch]);
 
   return (
-    <header className="flex font-tetriary flex-row items-center justify-between">
+    <header className="flex font-tetriary flex-row items-center justify-between px-3">
       <SideButton />
       <div
         onClick={() => navigate("/")}

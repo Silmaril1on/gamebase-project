@@ -6,8 +6,6 @@ import { doc, setDoc } from "firebase/firestore";
 import ErrorMsg from "../../ErrorMsg";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import uploadLogo from "../../../assets/image.png";
-import { useDispatch } from "react-redux";
-import { getUser } from "../../../features/user";
 
 function SignUp({ loading, setLoading }) {
   const [email, setEmail] = useState("");
@@ -34,17 +32,22 @@ function SignUp({ loading, setLoading }) {
       .then((userCredential) => {
         setDoc(doc(db, "userGames", email), {
           savedGames: [],
+          cartGames: [],
         });
-        // setDoc(doc(db, "users", userCredential.user.uid), {
-        //   image: fileUrl,
-        //   email: email,
-        //   firstName: firstName,
-        //   lastName: lastName,
-        //   country: country,
-        //   city: city,
-        //   zip: zip,
-        //   userName: userName,
-        // });
+        setDoc(doc(db, "users", userCredential.user.email), {
+          userProfile: [
+            {
+              image: fileUrl,
+              email: email,
+              firstName: firstName,
+              lastName: lastName,
+              country: country,
+              city: city,
+              zip: zip,
+              userName: userName,
+            },
+          ],
+        });
         updateProfile(auth.currentUser, {
           displayName: userName,
           photoURL: fileUrl,

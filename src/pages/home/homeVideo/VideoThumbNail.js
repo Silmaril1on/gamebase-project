@@ -13,7 +13,7 @@ function VideoThumbNail({ setIndex, index }) {
     <div className="flexCol items-center pt-3">
       <AnimatedLetters
         text="recent releases"
-        className="font-primary text-3xl text-cream mt-2 uppercase"
+        className="font-primary text-3xl mt-2 uppercase"
       />
       <motion.section
         variants={fadeOut200}
@@ -29,12 +29,12 @@ function VideoThumbNail({ setIndex, index }) {
               key={item.id}
               className={
                 index === item.id
-                  ? "w-32 h-22 m-2 rounded-xl cursor-pointer duration-300 blue-outline"
+                  ? "w-32 h-22 m-2 cursor-pointer duration-300 cream-outline"
                   : "w-28 h-18 m-2 brightness-50 cursor-pointer"
               }
             >
               <img
-                className="w-full h-full rounded-xl object-cover align-top"
+                className="w-full h-full object-cover align-top"
                 src={item.thumb}
                 alt="thumbnail"
               />
