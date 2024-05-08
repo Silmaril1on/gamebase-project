@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { FaCirclePlus } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../../../../features/gamesSlice";
