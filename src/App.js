@@ -16,9 +16,10 @@ import Wishlist from "./pages/userwishlist/Wishlist";
 import GamePage from "./pages/gamedetails/GamePage";
 import UserReviews from "./pages/gamedetails/sideinfo/userreviews/UserReviews";
 import UserProfile from "./pages/userprofile/UserProfile";
+import StarsPanel from "./pages/gamedetails/sideinfo/starrating/StarsPanel";
 
 function App() {
-  const { modal, warning } = useSelector((store) => store.games);
+  const { modal, warning, rating } = useSelector((store) => store.games);
 
   return (
     <>
@@ -39,6 +40,7 @@ function App() {
       <Footer />
       {modal && <RegWarning />}
       {warning && <CartWarning />}
+      {rating && <StarsPanel />}
     </>
   );
 }

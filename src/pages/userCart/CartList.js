@@ -8,7 +8,7 @@ import LogoTwo from "../../components/LogoTwo";
 function CartList({ deleteShow }) {
   const { userCartItems } = useSelector((store) => store.user);
 
-  if (userCartItems.length === 0) {
+  if (userCartItems?.length === 0) {
     return (
       <div className="text-2xl w-full flexCol items-center space-y-3 justify-center text-cream">
         <motion.h1
@@ -28,7 +28,7 @@ function CartList({ deleteShow }) {
 
   return (
     <section className="w-full p-1 space-y-2">
-      {userCartItems.map((item) => {
+      {userCartItems?.map((item) => {
         return <CartItem key={item.id} {...item} deleteShow={deleteShow} />;
       })}
     </section>

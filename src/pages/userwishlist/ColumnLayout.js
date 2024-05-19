@@ -24,7 +24,7 @@ function ColumnLayout() {
 
   return (
     <section>
-      {userWishlistGames.length === 0 ? (
+      {userWishlistGames?.length === 0 ? (
         <div className="w-full center h-full p-10">
           <h1 className="font-bold capitalize font-secondary text-2xl">
             your game list is empty
@@ -32,7 +32,7 @@ function ColumnLayout() {
         </div>
       ) : (
         <div className="flex h-full space-y-3 flex-col w-full py-5">
-          {userWishlistGames.map((game) => {
+          {userWishlistGames?.map((game) => {
             const { id, image, developer, year, info, title, platforms } = game;
             return (
               <div

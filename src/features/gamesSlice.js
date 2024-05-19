@@ -15,6 +15,7 @@ const initialState = {
   warning: false,
   userWarning: false,
   modal: false,
+  rating: false,
 };
 
 const gamesSlice = createSlice({
@@ -39,6 +40,10 @@ const gamesSlice = createSlice({
     closeModal: (state) => {
       state.warning = false;
       state.modal = false;
+      state.rating = false;
+    },
+    openStarPanel: (state) => {
+      state.rating = true;
     },
   },
   extraReducers: (builder) => {
@@ -57,7 +62,12 @@ const gamesSlice = createSlice({
   },
 });
 
-export const { filterItems, closeModal, registration, openModal } =
-  gamesSlice.actions;
+export const {
+  filterItems,
+  closeModal,
+  registration,
+  openModal,
+  openStarPanel,
+} = gamesSlice.actions;
 
 export default gamesSlice.reducer;

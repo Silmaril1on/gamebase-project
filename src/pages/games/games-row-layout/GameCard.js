@@ -82,7 +82,7 @@ function GameCard({
             {platforms.xbox ? <img src={platforms.xbox} alt="platform" /> : ""}
             {platforms.pc ? <img src={platforms.pc} alt="platform" /> : ""}
           </div>
-          <h1 className="text-xs md:text-sm font-bold uppercase">{name}</h1>
+          <h1 className="text-xs  md:text-sm font-bold uppercase">{name}</h1>
           {price === null ? (
             ""
           ) : (
@@ -99,14 +99,14 @@ function GameCard({
               visit page
             </button>
           </NavLink>
-          <div className="flexCol child:font-light child:py-1 w-28 font-secondary capitalize child:text-xs md:child:text-sm child:flexRow child:cursor-pointer hover:child:text-amber-400 child:duration-300">
+          <div className="flexCol child:font-light child:py-1 w-full font-secondary capitalize child:text-xs md:child:text-sm child:flexRow child:cursor-pointer hover:child:text-amber-400 child:duration-300">
             <button onClick={addToCart} className="justify-center">
               <IoCartOutline className="md:text-xl mr-1" />
               Add to cart
             </button>
-            <button onClick={saveShow} className="justify-center">
-              <IoHeartOutline className="md:text-xl mr-1" />
-              Wishlist
+            <button onClick={saveShow} className="justify-center w-full">
+              <IoHeartOutline className="md:text-xl  mr-1" />
+              Add to Wishlist
             </button>
           </div>
         </section>
