@@ -9,6 +9,7 @@ const initialState = {
   tax: 0,
   totalPrice: 0,
   totalProducts: 0,
+  userRating: 0,
 };
 
 const userSlice = createSlice({
@@ -30,6 +31,13 @@ const userSlice = createSlice({
     },
     getUserCartGames: (state, action) => {
       state.userCartItems = action.payload;
+    },
+    getUserRating: (state, action) => {
+      state.userRating = action.payload;
+    },
+    updateUserRating: (state, action) => {
+      state.userRating = action.payload;
+      console.log(state.userRating);
     },
     increase: (state, { payload }) => {
       const item = state.userCartItems.find((item) => item.id === payload.id);
@@ -70,6 +78,8 @@ export const {
   increase,
   decrease,
   calculateTotals,
+  getUserRating,
+  updateUserRating,
 } = userSlice.actions;
 
 export default userSlice.reducer;

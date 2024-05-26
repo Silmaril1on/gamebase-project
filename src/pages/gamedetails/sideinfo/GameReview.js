@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { MdReviews } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
-import StarRating from "./starrating/StarRating";
+import RateHeader from "./starrating/RateHeader";
 
 function GameReview({ details }) {
   return (
@@ -28,7 +28,7 @@ function GameReview({ details }) {
         </NavLink>
       </div>
       <div className="center flex-row space-x-2">
-        <StarRating details={details} />
+        <RateHeader details={details} />
       </div>
     </section>
   );

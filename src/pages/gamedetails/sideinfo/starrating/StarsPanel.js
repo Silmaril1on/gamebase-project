@@ -1,40 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import CloseButton from "../../../../components/CloseButton";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../../../features/gamesSlice";
 import { useLocation } from "react-router-dom";
 import Stars from "./Stars";
 import { motion } from "framer-motion";
 import { fadeOut200 } from "../../../../framerMotionValues/motionValues";
-import { addDoc, collection, doc } from "firebase/firestore";
+import { collection, doc, getDocs } from "firebase/firestore";
 import { auth, db } from "../../../../firebase/firebase";
 
 function StarsPanel() {
+  const dispatch = useDispatch();
   const location = useLocation();
   const details = location.state.game;
-  const [rating, setRating] = useState(null);
-  const dispatch = useDispatch();
+  const [myRating, setMyRating] = useState([]);
+  const currentUser = auth.currentUser.displayName;
+  const activeUser = myRating.find((name) => name.author === currentUser);
+  const activeRating = myRating.find((active) => active.author === currentUser);
+  const activeUserRating = activeRating?.gameRating;
+
+  // const { userRating } = useSelector((store) => store.user);
 
   const gameRef = doc(db, "games", `${details.name}`);
   const gameRatingRef = collection(gameRef, "gameRatings");
 
-  const addRating = async (currentRating) => {
-    try {
-      await addDoc(gameRatingRef, {
-        gameRating: rating,
-        email: auth.currentUser?.email,
-        author: auth.currentUser?.displayName,
-        createdAt: new Date().toDateString(),
-      });
-    } catch (error) {
-      console.log(error);
-    }
-    setRating(currentRating);
-    console.log(rating, "inside");
-  };
+  useEffect(() => {
+    const getUserRating = async () => {
+      try {
+        const data = await getDocs(gameRatingRef);
+        const userRating = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setMyRating(userRating);
+      } catch (error) {}
+    };
+    getUserRating();
+  }, []);
 
-  console.log(rating, "outside");
+  // useEffect(() => {
+  //   setCount(activeUserRating);
+  // }, [activeUserRating]);\
 
   return (
     <motion.section
@@ -50,20 +57,18 @@ function StarsPanel() {
         <div className="absolute -top-16 w-full center">
           <div className="relative">
             <FaStar className="text-amber-400" size={120} />
-            {rating ? (
-              <span className="text-4xl text-stone-800 absolute top-0 w-full h-full center font-bold">
-                {rating}
-              </span>
-            ) : (
-              <span className="text-4xl text-stone-800 absolute top-0 w-full h-full center font-bold">
-                ?
-              </span>
-            )}
+            <div className="*:text-4xl text-stone-800 absolute top-0 w-full h-full center font-bold">
+              <span className="">{activeUserRating}</span>
+            </div>
           </div>
         </div>
-        <h1 className="text-amber-400">Rate This</h1>
-        <h1 className="font-bold text-2xl capitalize">{details.name}</h1>
-        <Stars rating={rating} setRating={setRating} addRating={addRating} />
+        {activeUser ? (
+          <h1 className="text-amber-400">Your Rating</h1>
+        ) : (
+          <h1 className="text-amber-400">Rate This</h1>
+        )}
+        <h1 className="font-bold text-2xl capitalize">{details?.name}</h1>
+        <Stars details={details} />
       </div>
     </motion.section>
   );

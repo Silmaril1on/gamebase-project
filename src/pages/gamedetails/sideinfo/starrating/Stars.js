@@ -1,9 +1,25 @@
 import React, { useState } from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import Button from "../../../../components/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { closeModal } from "../../../../features/gamesSlice";
+import { collection, doc, updateDoc } from "firebase/firestore";
+import { updateUserRating } from "../../../../features/user";
+import { db } from "../../../../firebase/firebase";
 
-function Stars({ setRating, rating, addRating }) {
+function Stars({ details }) {
+  const dispatch = useDispatch();
   const [hover, setHover] = useState(null);
+  const { userRating } = useSelector((store) => store.user);
+
+  // const gameRef = doc(db, "games", `${details.name}`, "gameRatings");
+  // const gameRatingRef = collection(gameRef, doc.id);
+
+  // const updateRating = async () => {
+  //   await updateDoc(gameRatingRef, {
+  //     gameRating: userRating,
+  //   });
+  // };
 
   return (
     <div className="flex flex-col center">
@@ -16,8 +32,9 @@ function Stars({ setRating, rating, addRating }) {
                 type="radio"
                 name="rating"
                 value={currentRating}
-                // onChange={() => setRating(currentRating)}
-                onChange={() => addRating(currentRating)}
+                onClick={(e) => {
+                  dispatch(updateUserRating(e.target.value));
+                }}
               />
               <div
                 onMouseLeave={() => setHover(null)}
@@ -25,7 +42,7 @@ function Stars({ setRating, rating, addRating }) {
                 size={30}
                 className="cursor-pointer h-8 w-8 center"
               >
-                {currentRating <= (hover || rating) ? (
+                {currentRating <= (hover || userRating) ? (
                   <FaStar size={30} />
                 ) : (
                   <FaRegStar size={20} />
@@ -35,7 +52,14 @@ function Stars({ setRating, rating, addRating }) {
           );
         })}
       </div>
-      <Button onClick={() => setRating(null)}>remove rating</Button>
+      <Button
+        onClick={() => {
+          // updateRating();
+          dispatch(closeModal());
+        }}
+      >
+        add your rate
+      </Button>
     </div>
   );
 }
