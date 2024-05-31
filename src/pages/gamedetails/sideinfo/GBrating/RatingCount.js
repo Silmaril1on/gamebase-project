@@ -16,7 +16,7 @@ function RatingCount({ details }) {
       setRatingsData(ratings);
     };
     getRatingData();
-  }, []);
+  }, [ratingsRef]);
 
   console.log(ratingsData);
 
