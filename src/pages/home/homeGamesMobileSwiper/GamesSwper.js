@@ -34,6 +34,9 @@ function GamesSwper() {
     fetchData();
   }, []);
 
+  console.log(isError);
+  console.log(isLoading);
+
   const onDragEnd = () => {
     const x = dragX.get();
 

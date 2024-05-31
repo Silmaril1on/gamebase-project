@@ -33,7 +33,7 @@ function StarsPanel() {
       setMyRating(userRating);
     };
     getUserRating();
-  }, []);
+  }, [gameRef]);
 
   return (
     <motion.section

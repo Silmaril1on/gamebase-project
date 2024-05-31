@@ -29,7 +29,7 @@ function RateHeader() {
       setMyRating(userRating);
     };
     getUserRating();
-  }, []);
+  }, [gameRef]);
 
   return (
     <div

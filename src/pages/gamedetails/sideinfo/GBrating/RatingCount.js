@@ -3,21 +3,24 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../../../firebase/firebase";
 
 function RatingCount({ details }) {
-  // const [ratingsData, setRatingsData] = useState([]);
-  // const ratingsRef = collection(db, "games");
+  const [ratingsData, setRatingsData] = useState([]);
+  const ratingsRef = collection(db, "games");
 
-  // useEffect(() => {
-  //   const getRatingData = async () => {
-  //     const data = await getDocs(ratingsRef);
-  //     const ratings = data.docs.map((doc) => ({
-  //       ...doc.data(),
-  //       id: doc.id,
-  //     }));
-  //   };
-  //   getRatingData();
-  // }, []);
+  useEffect(() => {
+    const getRatingData = async () => {
+      const data = await getDocs(ratingsRef);
+      const ratings = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setRatingsData(ratings);
+    };
+    getRatingData();
+  }, []);
 
-  return <div>RatingCount</div>;
+  console.log(ratingsData);
+
+  return <div></div>;
 }
 
 export default RatingCount;

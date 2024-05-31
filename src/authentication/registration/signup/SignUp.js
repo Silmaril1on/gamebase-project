@@ -144,7 +144,7 @@ function SignUp({ loading, setLoading }) {
             />
           </div>
         </section>
-        <section className="flex flex-row w-full space-x-2">
+        <section className="flex flex-row w-full space-x-2 *:w-auto">
           <div className="form-container">
             <label htmlFor="country">Country</label>
             <input
@@ -163,7 +163,7 @@ function SignUp({ loading, setLoading }) {
               onChange={(e) => setCity(e.target.value)}
             />
           </div>
-          {/* <div className="form-container w-20">
+          <div className="form-container w-20">
             <label htmlFor="zip">Postal Code</label>
             <input
               autoComplete="on"
@@ -171,7 +171,7 @@ function SignUp({ loading, setLoading }) {
               type="zip"
               onChange={(e) => setZip(e.target.value)}
             />
-          </div> */}
+          </div>
         </section>
         <div className="form-container">
           <label htmlFor="userName">Your Username</label>
