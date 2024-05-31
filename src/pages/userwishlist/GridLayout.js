@@ -1,4 +1,5 @@
 import { doc, updateDoc } from "firebase/firestore";
+import { FaStar } from "react-icons/fa";
 import React from "react";
 import { useSelector } from "react-redux";
 import { db } from "../../firebase/firebase";
@@ -22,6 +23,14 @@ function GridLayout() {
     }
   };
 
+  const truncateString = (str, num) => {
+    if (str?.length > num) {
+      return str.slice(0, num) + "...";
+    } else {
+      return str;
+    }
+  };
+
   return (
     <>
       {userWishlistGames.length === 0 ? (
@@ -36,14 +45,24 @@ function GridLayout() {
             const { id, image, name } = game;
             return (
               <div
-                className="w-[170px] h-[300px] flex flex-col relative duration-300 m-2"
+                className="w-[98px] xl:w-[170px] h-[200px] xl:h-[300px] flex flex-col relative duration-300 m-2 bg-stone-800"
                 key={id}
               >
                 <div className="w-full h-full overflow-hidden">
-                  <img className="w-full h-auto" src={image} alt="" />
+                  <img
+                    className="w-full h-full object-cover"
+                    src={image}
+                    alt=""
+                  />
                 </div>
-                <article className=" h-16">
-                  <h1 className="capitalize font-bold">{name}</h1>
+                <article className="mt-2 h-16 pl-1 flex flex-col">
+                  <h1 className="capitalize font-secondary text-[12px]">
+                    {truncateString(name, 13)}
+                  </h1>
+                  <div className="flex items-center  flex-row font-thin">
+                    <FaStar className="text-amber-400 mr-2" />
+                    8/10
+                  </div>
                 </article>
 
                 <div className="absolute w-full h-full duration-300 center opacity-0 hover:opacity-100 bg-black/60 flexCol">

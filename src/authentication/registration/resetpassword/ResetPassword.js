@@ -26,7 +26,7 @@ function ResetPassword() {
   };
 
   return (
-    <div id="2" className="w-full md:w-2/4">
+    <div id="2" className="w-full md:w-2/4 px-5">
       <div>
         <h1 className="text-2xl font-bold py-2">Password Reset</h1>
       </div>

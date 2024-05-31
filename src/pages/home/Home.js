@@ -5,6 +5,7 @@ import News from "./homeNews/News";
 import Playstation from "./playstation/Playstation";
 import Products from "./products/Products";
 import { Helmet } from "react-helmet";
+import GamesSwper from "./homeGamesMobileSwiper/GamesSwper";
 
 function Home() {
   return (
@@ -15,6 +16,7 @@ function Home() {
       <HomeVideoContent />
       <Playstation />
       <News />
+      <GamesSwper />
       <Games />
       <Products />
     </main>

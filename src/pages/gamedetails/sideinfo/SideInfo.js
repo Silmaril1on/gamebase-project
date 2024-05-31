@@ -8,7 +8,7 @@ function SideInfo({ details }) {
       initial={{ x: "100%" }}
       animate={{ x: 0 }}
       transition={{ duration: 0.6, delay: 1 }}
-      className="w-3/12 center flex-col"
+      className="w-full xl:w-3/12 center flex-col"
     >
       <GameReview details={details} />
     </motion.section>

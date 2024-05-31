@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import LogoTwo from "../../../components/LogoTwo";
 import Regions from "../../regions/Regions";
 import Socials from "../../../components/Socials";
-import { FaBug } from "react-icons/fa";
 import SideButton from "../mobile/SideButton";
 import { useNavigate } from "react-router-dom";
 import UserButton from "./userspanel/UserButton";
@@ -17,6 +16,7 @@ import {
   logOutUser,
 } from "../../../features/user";
 import { collection, doc, getDocs, onSnapshot } from "firebase/firestore";
+import Bug from "./bug/Bug";
 
 function NavigationHeader() {
   const navigate = useNavigate();
@@ -84,23 +84,19 @@ function NavigationHeader() {
         <LogoTwo />
       </div>
 
-      <div className="hidden md:flexRow items-center justify-between w-full">
-        <section className="w-auto h-10 flexRow items-center">
-          <div className="w-full ml-2 hidden md:block">
+      <div className="hidden md:flexRow items-center justify-between w-full ">
+        <section className="w-auto h-8 flexRow items-center hover:bg-amber-400/40 duration-300 ml-2 mt-1 px-2">
+          <div className="w-full hidden md:block">
             <Regions />
           </div>
         </section>
         <section className="flexRow">
-          <div className="flexRow items-center text-cream px-2 py-2 cursor-pointer hover:bg-stone-800 duration-300">
-            <FaBug className="mr-2" />
-            <h1 className="text-xs">report a bug</h1>
-          </div>
+          <Bug />
           <div className="hidden md:flex items-center">
             <Socials />
           </div>
         </section>
       </div>
-
       <UserButton />
     </header>
   );

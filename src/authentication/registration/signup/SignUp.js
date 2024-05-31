@@ -75,7 +75,7 @@ function SignUp({ loading, setLoading }) {
   return (
     <div id="1">
       {error && <ErrorMsg>{error}</ErrorMsg>}
-      <form onSubmit={signUpUser}>
+      <form onSubmit={signUpUser} className="px-5 md:px-0">
         <div className="flex items-center flex-row w-80">
           <img
             className="w-16 h-auto mr-5 rounded-xl"
@@ -83,7 +83,7 @@ function SignUp({ loading, setLoading }) {
             alt="user_avatar"
           />
           <label
-            className="w-full cursor-pointer hover:text-amber-400 duration-300 hover:tracking-widest"
+            className="w-full cursor-pointer hover:text-amber-400 duration-300"
             htmlFor="file"
           >
             Upload Your Photo
@@ -95,7 +95,7 @@ function SignUp({ loading, setLoading }) {
             onChange={(e) => setFile(e.target.files[0])}
           />
         </div>
-        <section className="flex flex-row w-full space-x-2">
+        <section className="flex flex-row space-x-2  w-full">
           <div className="form-container">
             <label htmlFor="firstName">First Name</label>
             <input
@@ -163,7 +163,7 @@ function SignUp({ loading, setLoading }) {
               onChange={(e) => setCity(e.target.value)}
             />
           </div>
-          <div className="form-container w-20">
+          {/* <div className="form-container w-20">
             <label htmlFor="zip">Postal Code</label>
             <input
               autoComplete="on"
@@ -171,7 +171,7 @@ function SignUp({ loading, setLoading }) {
               type="zip"
               onChange={(e) => setZip(e.target.value)}
             />
-          </div>
+          </div> */}
         </section>
         <div className="form-container">
           <label htmlFor="userName">Your Username</label>

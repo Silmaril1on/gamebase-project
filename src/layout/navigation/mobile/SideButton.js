@@ -6,7 +6,7 @@ function SideButton() {
   const [sideNavigation, setSideNavigation] = useState(false);
 
   return (
-    <div className="block md:hidden">
+    <div className="block md:hidden relative z-[50]">
       <HiOutlineMenuAlt2
         onClick={() => setSideNavigation(true)}
         className="text-white cursor-pointer"

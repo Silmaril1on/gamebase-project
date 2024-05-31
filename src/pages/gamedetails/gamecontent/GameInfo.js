@@ -8,10 +8,10 @@ function GameInfo({ details }) {
       variants={slideright}
       initial="hidden"
       animate="visible"
-      className="absolute font-secondary top-[20%] w-full pl-[5%]"
+      className="absolute font-secondary top-10 xl:top-[15%] w-full pl-[5%]"
     >
-      <h1 className="text-4xl uppercase">{details.name}</h1>
-      <h1 className="uppercase text-xl">{details.developer}</h1>
+      <h1 className="text-3xl md:text-4xl uppercase">{details.name}</h1>
+      <h1 className="uppercase md:text-xl">{details.developer}</h1>
       <div className="flex flex-row space-x-2 capitalize text-sm">
         <h1>{details.category[0]}</h1>
         <h1>{details.category[1]}</h1>
@@ -42,7 +42,7 @@ function GameInfo({ details }) {
           alt={details.name}
         />
       </div>
-      <p className="w-2/4 text-sm mt-2">{details.info}</p>
+      <p className="w-full xl:w-2/4 text-xs md:text-sm mt-2">{details.info}</p>
     </motion.article>
   );
 }

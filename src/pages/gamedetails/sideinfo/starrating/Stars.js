@@ -1,25 +1,42 @@
 import React, { useState } from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import Button from "../../../../components/Button";
-import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../../../features/gamesSlice";
-import { collection, doc, updateDoc } from "firebase/firestore";
-import { updateUserRating } from "../../../../features/user";
-import { db } from "../../../../firebase/firebase";
+import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { auth, db } from "../../../../firebase/firebase";
 
-function Stars({ details }) {
-  const dispatch = useDispatch();
+function Stars({
+  details,
+  userStar,
+  setInitialRating,
+  initialRating,
+  dispatch,
+}) {
   const [hover, setHover] = useState(null);
-  const { userRating } = useSelector((store) => store.user);
+  const gameRatingRef = doc(db, "games", `${details.name}`);
 
-  // const gameRef = doc(db, "games", `${details.name}`, "gameRatings");
-  // const gameRatingRef = collection(gameRef, doc.id);
-
-  // const updateRating = async () => {
-  //   await updateDoc(gameRatingRef, {
-  //     gameRating: userRating,
-  //   });
-  // };
+  const updateRating = async () => {
+    const found = await getDoc(gameRatingRef);
+    if (!found.exists()) {
+      await setDoc(gameRatingRef, {
+        ratings: arrayUnion({
+          gameRating: initialRating,
+          email: auth.currentUser?.email,
+          author: auth.currentUser?.displayName,
+          createdAt: new Date().toDateString(),
+        }),
+      });
+    } else {
+      await updateDoc(gameRatingRef, {
+        ratings: arrayUnion({
+          gameRating: initialRating,
+          email: auth.currentUser?.email,
+          author: auth.currentUser?.displayName,
+          createdAt: new Date().toDateString(),
+        }),
+      });
+    }
+  };
 
   return (
     <div className="flex flex-col center">
@@ -33,28 +50,43 @@ function Stars({ details }) {
                 name="rating"
                 value={currentRating}
                 onClick={(e) => {
-                  dispatch(updateUserRating(e.target.value));
+                  setInitialRating(e.target.value);
                 }}
               />
-              <div
-                onMouseLeave={() => setHover(null)}
-                onMouseEnter={() => setHover(currentRating)}
-                size={30}
-                className="cursor-pointer h-8 w-8 center"
-              >
-                {currentRating <= (hover || userRating) ? (
-                  <FaStar size={30} />
-                ) : (
-                  <FaRegStar size={20} />
-                )}
-              </div>
+              {userStar ? (
+                <div
+                  onMouseLeave={() => setHover(null)}
+                  onMouseEnter={() => setHover(currentRating)}
+                  size={30}
+                  className="cursor-pointer h-8 w-8 center"
+                >
+                  {currentRating <= (hover || userStar) ? (
+                    <FaStar size={30} />
+                  ) : (
+                    <FaRegStar size={20} />
+                  )}
+                </div>
+              ) : (
+                <div
+                  onMouseLeave={() => setHover(null)}
+                  onMouseEnter={() => setHover(currentRating)}
+                  size={30}
+                  className="cursor-pointer h-8 w-8 center"
+                >
+                  {currentRating <= (hover || initialRating) ? (
+                    <FaStar size={30} />
+                  ) : (
+                    <FaRegStar size={20} />
+                  )}
+                </div>
+              )}
             </label>
           );
         })}
       </div>
       <Button
         onClick={() => {
-          // updateRating();
+          updateRating();
           dispatch(closeModal());
         }}
       >

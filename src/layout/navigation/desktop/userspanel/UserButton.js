@@ -14,8 +14,10 @@ function UserButton() {
     <div className="cursor-pointer">
       {userReg?.email ? (
         <article className="flex flex-row">
-          <WishListButton />
-          <CartButton />
+          <div className="hidden xl:flex flex-row">
+            <WishListButton />
+            <CartButton />
+          </div>
           <DisplayNameButton />
         </article>
       ) : (

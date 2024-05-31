@@ -11,6 +11,7 @@ const url = "https://silmaril1on.github.io/custom_data_API/games-data.json";
 
 function Games() {
   const [isLoading, setIsLoading] = useState(true);
+
   const [isError, setIsError] = useState(false);
   const [games, setGames] = useState([]);
   const [index, setIndex] = useState(0);
@@ -54,7 +55,7 @@ function Games() {
   }
 
   return (
-    <main className="relative pb-5 my-20 overflow-hidden before:absolute before:bg-amber-400 before:w-1000 before:z-0 before:h-1000 before:top-28 before:left-36 before:skew-x-110">
+    <main className="relative hidden md:block pb-5 my-20 overflow-hidden before:absolute before:bg-amber-400 before:w-[2700px] before:z-0 before:h-[1000px] before:top-28 before:left-36 before:skew-x-110">
       <section className="overflow-hidden relative">
         <div className="mb-14 text-center">
           <AnimatedLetters

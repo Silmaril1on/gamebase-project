@@ -7,7 +7,7 @@ import Xbox from "../../../components/Xbox";
 function Header() {
   return (
     <section className="center flex-col">
-      <div className="h-600 w-full relative">
+      <div className="h-[600px] w-full relative">
         <div className="bg-topBlack absolute top-0 w-full h-full"></div>
         <video
           className="h-full w-full object-cover"

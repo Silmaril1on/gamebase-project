@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { MdReviews } from "react-icons/md";
-import { FaStar } from "react-icons/fa";
 import RateHeader from "./starrating/RateHeader";
+import GB from "./GBrating/GB";
 
 function GameReview({ details }) {
   return (
@@ -17,19 +17,8 @@ function GameReview({ details }) {
           User Reviews
         </NavLink>
       </div>
-      <div className=" center flex-row space-x-2">
-        <FaStar className="text-2xl text-amber-400" />
-        <NavLink
-          to="/userreviews"
-          state={{ details: details }}
-          className="text-xl  hover:underline"
-        >
-          GB Rating
-        </NavLink>
-      </div>
-      <div className="center flex-row space-x-2">
-        <RateHeader details={details} />
-      </div>
+      <GB details={details} />
+      <RateHeader details={details} />
     </section>
   );
 }

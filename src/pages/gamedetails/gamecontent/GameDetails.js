@@ -4,7 +4,7 @@ import GameInfo from "./GameInfo";
 
 function GameDetails({ details }) {
   return (
-    <section className="relative w-9/12">
+    <section className="relative w-full xl:w-9/12">
       <GameBanner details={details} />
       <GameInfo details={details} />
     </section>

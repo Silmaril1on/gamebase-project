@@ -14,7 +14,7 @@ function Regions() {
     <section className="text-cream relative z-10 flex items-center w-full">
       <button
         onClick={() => setIsOpen(true)}
-        className="flex flex-row items-center ml-2"
+        className="flex flex-row items-center"
       >
         <MdOutlineLanguage className="text-lg" />
         <h1 className="font-tetriary text-sm pl-1">{array[index].name}</h1>

@@ -8,7 +8,12 @@ import Socials from "../../../components/Socials";
 
 function SideLinks({ setSideNavigation }) {
   return (
-    <aside className="fixed w-full h-screen bg-black left-0 top-0 flex-col  center justify-between py-5">
+    <motion.aside
+      variants={zoomIn}
+      initial="hidden"
+      animate="visible"
+      className="fixed w-full h-screen bg-black left-0 top-0 flex-col center justify-between py-5 z-20"
+    >
       <CloseButton onClick={() => setSideNavigation(false)} />
       <motion.div
         variants={zoomIn}
@@ -33,7 +38,7 @@ function SideLinks({ setSideNavigation }) {
         })}
       </motion.div>
       <Socials />
-    </aside>
+    </motion.aside>
   );
 }
 

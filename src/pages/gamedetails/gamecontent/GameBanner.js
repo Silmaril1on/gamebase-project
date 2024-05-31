@@ -12,7 +12,7 @@ function GameBanner({ details }) {
       animate="visible"
       className="w-full h-[600px] overflow-hidden relative "
     >
-      <div className="absolute w-full top-0 left-0 h-full bg-gradient-to-r from-black from-1%"></div>
+      <div className="absolute w-full top-0 left-0 h-full bg-gradient-to-r from-black from-10% xl:from-1%"></div>
       {video ? (
         <video autoPlay={true} muted loop={true}>
           <source src={details.banner} type="video/mp4" />

@@ -21,7 +21,7 @@ function SignIn({ setActive }) {
   };
 
   return (
-    <div id="0" className="w-full md:w-2/4">
+    <div id="0" className="w-full md:w-2/4 px-5">
       {error && <ErrorMsg>{error}</ErrorMsg>}
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col py-2">
@@ -34,7 +34,7 @@ function SignIn({ setActive }) {
           />
         </div>
         <div className="flex flex-col py-2">
-          <label htmlFor="email">Password</label>
+          <label htmlFor="password">Password</label>
           <input
             autoComplete="on"
             onChange={(e) => setPassword(e.target.value)}

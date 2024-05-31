@@ -6,6 +6,7 @@ import SomeInfo from "./SomeInfo";
 import { BsBookmarkHeartFill } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import Button from "../../components/Button";
+import { FaStar } from "react-icons/fa";
 
 function ColumnLayout() {
   const { userReg, userWishlistGames } = useSelector((store) => store.user);
@@ -33,24 +34,24 @@ function ColumnLayout() {
       ) : (
         <div className="flex h-full space-y-3 flex-col w-full py-5">
           {userWishlistGames?.map((game) => {
-            const { id, image, developer, year, info, title, platforms } = game;
+            const { id, image, developer, year, info, name, platforms } = game;
             return (
               <div
                 key={id}
-                className="w-full h-[230px] center flex-row relative duration-300 bg-stone-800 hover:bg-stone-900"
+                className="w-full h-[150px] xl:h-[230px] center flex-row relative duration-300 bg-stone-800 hover:bg-stone-900"
               >
-                <div className="w-52 h-full overflow-hidden">
+                <div className="w-40 xl:w-52 h-full overflow-hidden">
                   <img
                     className="w-full object-cover h-full"
                     src={image}
                     alt="game-avatar"
                   />
                 </div>
-                <article className="flex flex-col w-full ml-2 h-full">
-                  <h1 className="capitalize font-bold text-2xl">{title}</h1>
-                  <h1 className="uppercase">{developer}</h1>
-                  <h1 className="capitalize font-bold">{year}</h1>
-                  <div className="flex flex-row h-6 *:p-1 *:w-6 space-x-2">
+                <article className="flex flex-col justify-center w-full pl-5 xl:ml-2 h-full">
+                  <h1 className="capitalize font-bold text-lg">{name}</h1>
+                  <h1 className="uppercase hidden xl:block">{developer}</h1>
+                  <h1 className="capitalize xl:font-bold">{year}</h1>
+                  <div className="flex-row h-6 *:p-1 *:w-6 space-x-2 hidden xl:flex">
                     {platforms.ps ? (
                       <img src={platforms.ps} alt="platform" />
                     ) : (
@@ -67,9 +68,15 @@ function ColumnLayout() {
                       ""
                     )}
                   </div>
-                  <p className="w-full md:w-[500px] font-light">{info}</p>
+                  <div className="flex flex-row items-center">
+                    <FaStar className="text-amber-400 mr-2" />
+                    8/10
+                  </div>
+                  <p className="w-full hidden xl:block md:w-[500px] font-light">
+                    {info}
+                  </p>
                 </article>
-                <div className="absolute top-2 right-2 flex justify-end items-end flex-col">
+                <div className="absolute top-2 right-2 flex justify-between items-end flex-col h-[135px]">
                   <BsBookmarkHeartFill
                     className="text-amber-400 text-3xl hover:scale-125 duration-300 cursor-pointer mb-5"
                     onClick={() => deleteShow(id)}

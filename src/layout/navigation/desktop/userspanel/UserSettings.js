@@ -30,7 +30,7 @@ function UserSettings({ setSettings }) {
       variants={fadeOut700}
       initial="hidden"
       animate="visible"
-      className="bg-400 absolute top-12 w-36 right-0 pr-2 border"
+      className="bg-400 absolute top-12 w-36 right-0 pr-2 py-2"
     >
       <motion.div variants={fadeOut700} className="font-primary">
         {userSettingsLinks.map((item, index) => {

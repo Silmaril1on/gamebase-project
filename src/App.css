@@ -58,6 +58,7 @@
     padding: 3px 10px;
     font-weight: 200;
     backdrop-filter: 20px;
+    width: 100%;
   }
 
   textarea::placeholder,

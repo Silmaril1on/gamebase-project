@@ -17,13 +17,16 @@ import GamePage from "./pages/gamedetails/GamePage";
 import UserReviews from "./pages/gamedetails/sideinfo/userreviews/UserReviews";
 import UserProfile from "./pages/userprofile/UserProfile";
 import StarsPanel from "./pages/gamedetails/sideinfo/starrating/StarsPanel";
+import BugPanel from "./layout/navigation/desktop/bug/BugPanel";
+import EdgeButton from "./components/EdgeButton";
 
 function App() {
-  const { modal, warning, rating } = useSelector((store) => store.games);
+  const { modal, warning, rating, bug } = useSelector((store) => store.games);
 
   return (
     <>
       <Navigation />
+      <EdgeButton />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/games" element={<Games />} />
@@ -41,6 +44,7 @@ function App() {
       {modal && <RegWarning />}
       {warning && <CartWarning />}
       {rating && <StarsPanel />}
+      {bug && <BugPanel />}
     </>
   );
 }

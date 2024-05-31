@@ -12,7 +12,7 @@ function Index() {
 
   return (
     <main className="bg-psBack w-full h-screen absolute top-0 z-5 text-cream font-primary">
-      <section className="w-2/4 h-full bg-400 backdrop-blur-md center flex-col">
+      <section className="w-full xl:w-2/4 h-full bg-400 backdrop-blur-md center flex-col">
         <CloseButton onClick={() => navigate("/")} />
         {userReg && userReg.email ? (
           <WelcomeUser />

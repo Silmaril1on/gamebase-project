@@ -16,7 +16,7 @@ function GameInfo({ setGameReviewForm }) {
         <img src={details.image} alt="" />
       </div>
       <div className="flex flex-col ml-2">
-        <div className="flex flex-row space-x-2  capitalize *:text-2xl">
+        <div className="flex flex-col xl:flex-row xl:space-x-2 capitalize *:text-lg xl:*:text-2xl">
           <h1>{details.name}</h1>
           <h1>({details.year})</h1>
         </div>

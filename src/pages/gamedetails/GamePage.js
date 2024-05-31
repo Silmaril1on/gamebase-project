@@ -13,7 +13,7 @@ function GamePage() {
       <Helmet>
         <title>Game | {details?.name}</title>
       </Helmet>
-      <section className="space-x-1 flex flex-row overflow-hidden">
+      <section className="space-x-1 flex flex-col xl:flex-row overflow-hidden">
         <GameDetails details={details} />
         <SideInfo details={details} />
       </section>

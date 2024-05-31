@@ -49,16 +49,7 @@ module.exports = {
       fontSize: {
         xxs: "7px",
       },
-      height: {
-        300: "300px",
-        400: "400px",
-        500: "500px",
-        600: "600px",
-        1000: "1000px",
-      },
-      width: {
-        1000: "2700px",
-      },
+
       textShadow: {
         sm: "1px 1px 5px white",
         smB: "1px 1px 5px black",

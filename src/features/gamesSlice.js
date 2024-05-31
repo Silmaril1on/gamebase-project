@@ -12,10 +12,11 @@ const initialState = {
   filteredGames: [],
   isLoading: true,
   isError: false,
-  warning: false,
   userWarning: false,
   modal: false,
+  warning: false,
   rating: false,
+  bug: false,
 };
 
 const gamesSlice = createSlice({
@@ -37,10 +38,14 @@ const gamesSlice = createSlice({
     openModal: (state) => {
       state.modal = true;
     },
+    openBugModal: (state) => {
+      state.bug = true;
+    },
     closeModal: (state) => {
       state.warning = false;
       state.modal = false;
       state.rating = false;
+      state.bug = false;
     },
     openStarPanel: (state) => {
       state.rating = true;
@@ -68,6 +73,7 @@ export const {
   registration,
   openModal,
   openStarPanel,
+  openBugModal,
 } = gamesSlice.actions;
 
 export default gamesSlice.reducer;

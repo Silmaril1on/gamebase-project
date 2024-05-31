@@ -7,7 +7,7 @@ function WishListButton() {
   const { userWishlistGames } = useSelector((store) => store.user);
   return (
     <NavLink to="/wishlist" className="center flex-row">
-      <div className="center text-cream w-full space-x-1 hover:bg-stone-800 duration-300 px-3 py-1">
+      <div className="center text-cream w-full space-x-1 xl:hover:bg-amber-400/40 duration-300 px-3 py-1">
         <BsBookmarkHeartFill className="text-lg text-amber-400" />
         <h1>wishlist</h1>
         <span className="font-bold font-secondary">

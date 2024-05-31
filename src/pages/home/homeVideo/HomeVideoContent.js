@@ -29,7 +29,7 @@ function HomeVideoContent() {
 
   return (
     <main className="flexCol bg-black">
-      <section className="relative h-600 overflow-hidden">
+      <section className="relative h-[600px] overflow-hidden">
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             variants={slideShow}
