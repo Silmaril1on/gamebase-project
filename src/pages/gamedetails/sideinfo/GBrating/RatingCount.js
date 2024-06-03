@@ -57,8 +57,6 @@ function RatingCount({ details }) {
     }
   };
 
-  console.log(currentGameRating, "current");
-
   return (
     <div className="w-full mt-2 hover:bg-stone-800 duration-300 py-1 cursor-pointer">
       <div className="text-2xl flex flex-row">

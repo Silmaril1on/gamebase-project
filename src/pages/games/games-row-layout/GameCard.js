@@ -113,7 +113,7 @@ function GameCard({
                 <Loader />
               ) : (
                 <span
-                  className="pt-1
+                  className="pt-1  font-light
                 "
                 >
                   {truncateRating(

@@ -9,7 +9,7 @@ import UserSettings from "../layout/navigation/desktop/userspanel/UserSettings";
 
 const edgeVariant = {
   hidden: {
-    bottom: "-30px",
+    bottom: "-39px",
   },
   visible: {
     bottom: 0,

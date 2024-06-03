@@ -119,7 +119,7 @@ function GameCard({
               {loading ? (
                 <Loader />
               ) : (
-                <span className="pt-1">
+                <span className="pt-1  font-light">
                   {truncateRating(
                     currRating?.averageRating.toLocaleString(),
                     3

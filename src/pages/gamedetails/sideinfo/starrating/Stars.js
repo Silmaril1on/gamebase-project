@@ -15,25 +15,56 @@ function Stars({
   const [hover, setHover] = useState(null);
   const gameRatingRef = doc(db, "games", `${details.name}`);
 
+  // const updateRating = async () => {
+  //   const found = await getDoc(gameRatingRef);
+  //   if (!found.exists()) {
+  //     await setDoc(gameRatingRef, {
+  //       ratings: arrayUnion({
+  //         gameRating: Number(initialRating),
+  //         email: auth.currentUser?.email,
+  //         author: auth.currentUser?.displayName,
+  //         createdAt: new Date().toDateString(),
+  //       }),
+  //     });
+  //   } else {
+  //     await updateDoc(gameRatingRef, {
+  //       ratings: arrayUnion({
+  //         gameRating: Number(initialRating),
+  //         email: auth.currentUser?.email,
+  //         author: auth.currentUser?.displayName,
+  //         createdAt: new Date().toDateString(),
+  //       }),
+  //     });
+  //   }
+  // };
+
   const updateRating = async () => {
     const found = await getDoc(gameRatingRef);
-    if (!found.exists()) {
+    const rating = (found.data() || {}).ratings || [];
+    const myRating = rating.find((r) => r.email == auth.currentUser?.email);
+    if (!myRating) {
       await setDoc(gameRatingRef, {
         ratings: arrayUnion({
-          gameRating: Number(initialRating),
+          gameRating: initialRating,
           email: auth.currentUser?.email,
           author: auth.currentUser?.displayName,
           createdAt: new Date().toDateString(),
         }),
       });
     } else {
+      const newRating = rating.map((m) => {
+        if (m.email === auth.currentUser?.email) {
+          m = {
+            ...m,
+            gameRating: initialRating,
+            createdAt: new Date().toDateString(),
+          };
+        }
+        return m;
+      });
+
       await updateDoc(gameRatingRef, {
-        ratings: arrayUnion({
-          gameRating: Number(initialRating),
-          email: auth.currentUser?.email,
-          author: auth.currentUser?.displayName,
-          createdAt: new Date().toDateString(),
-        }),
+        ratings: newRating,
       });
     }
   };
