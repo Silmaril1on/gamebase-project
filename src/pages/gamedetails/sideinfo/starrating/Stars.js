@@ -41,7 +41,7 @@ function Stars({
   const updateRating = async () => {
     const found = await getDoc(gameRatingRef);
     const rating = (found.data() || {}).ratings || [];
-    const myRating = rating.find((r) => r.email == auth.currentUser?.email);
+    const myRating = rating.find((r) => r.email === auth.currentUser?.email);
     if (!myRating) {
       await setDoc(gameRatingRef, {
         ratings: arrayUnion({
