@@ -15,7 +15,7 @@ function SignUp({ loading, setLoading }) {
   const [lastName, setLastName] = useState("");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
-  const [zip, setZip] = useState("");
+  const [zip, setZip] = useState(null);
   const [file, setFile] = useState(null);
   const [fileUrl, setFileUrl] = useState(null);
   const [userName, setUserName] = useState("");
@@ -43,7 +43,7 @@ function SignUp({ loading, setLoading }) {
               lastName: lastName,
               country: country,
               city: city,
-              zip: zip,
+              zip: Number(zip),
               userName: userName,
             },
           ],

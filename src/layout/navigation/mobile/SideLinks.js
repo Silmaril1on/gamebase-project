@@ -12,7 +12,7 @@ function SideLinks({ setSideNavigation }) {
       variants={zoomIn}
       initial="hidden"
       animate="visible"
-      className="fixed w-full h-screen bg-black left-0 top-0 flex-col center justify-between py-5 z-20"
+      className="fixed w-full h-screen bg-black left-0 top-0 flex-col center justify-between py-5"
     >
       <CloseButton onClick={() => setSideNavigation(false)} />
       <motion.div

@@ -4,7 +4,7 @@ import { getGames } from "../../../features/gamesSlice";
 import GameCard from "./GameCard";
 import { AnimatePresence, motion } from "framer-motion";
 
-function GamesList({ hide }) {
+function GamesList({ hide, loading }) {
   const { filteredGames } = useSelector((store) => store.games);
   const dispatch = useDispatch();
 
@@ -24,7 +24,9 @@ function GamesList({ hide }) {
           }
         >
           {filteredGames.map((game) => {
-            return <GameCard key={game.id} {...game} game={game} />;
+            return (
+              <GameCard loading={loading} key={game.id} {...game} game={game} />
+            );
           })}
         </motion.div>
       </AnimatePresence>

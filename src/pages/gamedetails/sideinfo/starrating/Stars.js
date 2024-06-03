@@ -20,7 +20,7 @@ function Stars({
     if (!found.exists()) {
       await setDoc(gameRatingRef, {
         ratings: arrayUnion({
-          gameRating: initialRating,
+          gameRating: Number(initialRating),
           email: auth.currentUser?.email,
           author: auth.currentUser?.displayName,
           createdAt: new Date().toDateString(),
@@ -29,7 +29,7 @@ function Stars({
     } else {
       await updateDoc(gameRatingRef, {
         ratings: arrayUnion({
-          gameRating: initialRating,
+          gameRating: Number(initialRating),
           email: auth.currentUser?.email,
           author: auth.currentUser?.displayName,
           createdAt: new Date().toDateString(),
@@ -53,6 +53,7 @@ function Stars({
                   setInitialRating(e.target.value);
                 }}
               />
+
               {userStar ? (
                 <div
                   onMouseLeave={() => setHover(null)}
@@ -60,7 +61,7 @@ function Stars({
                   size={30}
                   className="cursor-pointer h-8 w-8 center"
                 >
-                  {currentRating <= (hover || userStar) ? (
+                  {currentRating <= (hover || initialRating) ? (
                     <FaStar size={30} />
                   ) : (
                     <FaRegStar size={20} />

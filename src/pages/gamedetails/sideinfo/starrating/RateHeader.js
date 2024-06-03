@@ -29,7 +29,8 @@ function RateHeader() {
       setMyRating(userRating);
     };
     getUserRating();
-  }, [gameRef]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div

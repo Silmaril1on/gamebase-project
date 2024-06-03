@@ -16,7 +16,7 @@ function StarsPanel() {
   const details = location.state.game;
   const currentUser = auth.currentUser?.displayName;
   const [myRating, setMyRating] = useState([]);
-  const [initialRating, setInitialRating] = useState(0);
+  const [initialRating, setInitialRating] = useState(null);
   const gameRef = collection(db, "games");
   const currentGame = myRating.filter((item) => item.id === details.name);
   const gameRatings = currentGame[0]?.ratings;
@@ -33,7 +33,8 @@ function StarsPanel() {
       setMyRating(userRating);
     };
     getUserRating();
-  }, [gameRef]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <motion.section
@@ -65,6 +66,8 @@ function StarsPanel() {
         )}
         <h1 className="font-bold text-2xl capitalize">{details?.name}</h1>
         <Stars
+          gameRatings={gameRatings}
+          rating={rating}
           details={details}
           userStar={userStar}
           setInitialRating={setInitialRating}

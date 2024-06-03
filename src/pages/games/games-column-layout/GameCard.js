@@ -7,8 +7,11 @@ import { db } from "../../../firebase/firebase";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { NavLink } from "react-router-dom";
 import { openModal } from "../../../features/gamesSlice";
+import { FaStar } from "react-icons/fa";
+import Loader from "../../../components/Loader";
 
 function GameCard({
+  loading,
   category,
   id,
   name,
@@ -25,8 +28,9 @@ function GameCard({
 }) {
   const dispatch = useDispatch();
   const { userReg } = useSelector((store) => store.user);
-
   const gameRef = doc(db, "userGames", `${userReg?.email}`);
+  const { averageRating } = useSelector((store) => store.games);
+  const currRating = averageRating.find((item) => item.id === name);
 
   const saveShow = async () => {
     if (userReg?.email) {
@@ -68,6 +72,21 @@ function GameCard({
     }
   };
 
+  const truncateString = (str, num) => {
+    if (str?.length > num) {
+      return str.slice(0, num) + "...";
+    } else {
+      return str;
+    }
+  };
+  const truncateRating = (str, num) => {
+    if (str?.length > num) {
+      return str.slice(0, num);
+    } else {
+      return str;
+    }
+  };
+
   return (
     <>
       <motion.div
@@ -78,7 +97,7 @@ function GameCard({
         transition={{ duration: 0.5 }}
         className="w-24 h-48 md:w-40 mb-4 bg-black md:h-auto relative cursor-pointer group duration-300"
       >
-        <div className="w-24 h-32 md:h-52 md:w-40 center">
+        <div className="w-24 h-32 md:h-56 md:w-40 center">
           <img
             className="w-full h-full object-cover object-top"
             src={image}
@@ -91,7 +110,25 @@ function GameCard({
             {platforms.xbox ? <img src={platforms.xbox} alt="platform" /> : ""}
             {platforms.pc ? <img src={platforms.pc} alt="platform" /> : ""}
           </div>
-          <h1 className="text-xxs md:text-sm font-bold uppercase">{name}</h1>
+          <h1 className="text-xxs md:text-sm font-bold uppercase">
+            {truncateString(name, 15)}
+          </h1>
+          <div className="flex flex-row items-center">
+            <FaStar className="text-amber-400 mr-2 text-xs md:text-lg" />
+            <span className=" relative w-14 h-5 *:text-xs *:md:text-lg flex flex-row items-center justify-start">
+              {loading ? (
+                <Loader />
+              ) : (
+                <span className="pt-1">
+                  {truncateRating(
+                    currRating?.averageRating.toLocaleString(),
+                    3
+                  )}{" "}
+                  / 10
+                </span>
+              )}
+            </span>
+          </div>
           {price === null ? (
             ""
           ) : (

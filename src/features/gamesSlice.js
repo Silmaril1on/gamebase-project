@@ -17,6 +17,7 @@ const initialState = {
   warning: false,
   rating: false,
   bug: false,
+  averageRating: [],
 };
 
 const gamesSlice = createSlice({
@@ -50,6 +51,9 @@ const gamesSlice = createSlice({
     openStarPanel: (state) => {
       state.rating = true;
     },
+    getAverageRating: (state, action) => {
+      state.averageRating = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getGames.pending, (state) => {
@@ -74,6 +78,7 @@ export const {
   openModal,
   openStarPanel,
   openBugModal,
+  getAverageRating,
 } = gamesSlice.actions;
 
 export default gamesSlice.reducer;

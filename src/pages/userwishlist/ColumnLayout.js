@@ -10,6 +10,7 @@ import { FaStar } from "react-icons/fa";
 
 function ColumnLayout() {
   const { userReg, userWishlistGames } = useSelector((store) => store.user);
+  const { averageRating } = useSelector((store) => store.games);
   const gameRef = doc(db, "userGames", `${userReg?.email}`);
 
   const deleteShow = async (passedID) => {
@@ -20,6 +21,14 @@ function ColumnLayout() {
       });
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const truncateString = (str, num) => {
+    if (str?.length > num) {
+      return str.slice(0, num);
+    } else {
+      return str;
     }
   };
 
@@ -34,6 +43,9 @@ function ColumnLayout() {
       ) : (
         <div className="flex h-full space-y-3 flex-col w-full py-5">
           {userWishlistGames?.map((game) => {
+            const currRating = averageRating.find(
+              (item) => item.id === game.name
+            );
             const { id, image, developer, year, info, name, platforms } = game;
             return (
               <div
@@ -70,9 +82,15 @@ function ColumnLayout() {
                   </div>
                   <div className="flex flex-row items-center">
                     <FaStar className="text-amber-400 mr-2" />
-                    8/10
+                    <span className="pt-1">
+                      {truncateString(
+                        currRating?.averageRating.toLocaleString(),
+                        3
+                      )}{" "}
+                      / 10
+                    </span>
                   </div>
-                  <p className="w-full hidden xl:block md:w-[500px] font-light">
+                  <p className="w-full hidden xl:block md:w-[500px] font-light text-sm">
                     {info}
                   </p>
                 </article>

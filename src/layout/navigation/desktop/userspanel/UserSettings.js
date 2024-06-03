@@ -1,7 +1,6 @@
 import React from "react";
 import SignOut from "../../../../authentication/registration/signout/SignOut";
 import { motion } from "framer-motion";
-import { fadeOut700 } from "../../../../framerMotionValues/motionValues";
 import { NavLink } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoSettingsOutline, IoShieldCheckmarkOutline } from "react-icons/io5";
@@ -24,22 +23,29 @@ const userSettingsLinks = [
   },
 ];
 
-function UserSettings({ setSettings }) {
+const edgeVariant = {
+  hidden: {
+    bottom: "30px",
+  },
+  visible: {
+    bottom: 0,
+    transition: {
+      duration: 0.3,
+    },
+  },
+};
+
+function UserSettings({ settings }) {
   return (
     <motion.div
-      variants={fadeOut700}
-      initial="hidden"
-      animate="visible"
-      className="bg-400 absolute top-12 w-36 right-0 pr-2 py-2"
+      variants={edgeVariant}
+      animate={settings ? "hidden" : "visible"}
+      className="bg-stone-800/80 backdrop-blur-sm fixed w-36 right-0 pr-2 py-2 -z-5"
     >
-      <motion.div variants={fadeOut700} className="font-primary">
+      <div className="font-primary">
         {userSettingsLinks.map((item, index) => {
           return (
-            <div
-              onClick={() => setSettings(false)}
-              className="settings-style"
-              key={index}
-            >
+            <div className="settings-style" key={index}>
               <NavLink className="w-full text-end" to={item.link}>
                 {item.name}
               </NavLink>
@@ -47,7 +53,7 @@ function UserSettings({ setSettings }) {
             </div>
           );
         })}
-      </motion.div>
+      </div>
       <div className="flex justify-end pr-2">
         <SignOut />
       </div>

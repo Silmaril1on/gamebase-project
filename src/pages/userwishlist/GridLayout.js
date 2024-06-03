@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 
 function GridLayout() {
   const { userReg, userWishlistGames } = useSelector((store) => store.user);
-
+  const { averageRating } = useSelector((store) => store.games);
   const gameRef = doc(db, "userGames", `${userReg?.email}`);
 
   const deleteShow = async (passedID) => {
@@ -30,6 +30,13 @@ function GridLayout() {
       return str;
     }
   };
+  const truncateRating = (str, num) => {
+    if (str?.length > num) {
+      return str.slice(0, num);
+    } else {
+      return str;
+    }
+  };
 
   return (
     <>
@@ -42,6 +49,9 @@ function GridLayout() {
       ) : (
         <div className="mt-10 flex flex-row flex-wrap">
           {userWishlistGames.map((game) => {
+            const currRating = averageRating.find(
+              (item) => item.id === game.name
+            );
             const { id, image, name } = game;
             return (
               <div
@@ -52,16 +62,25 @@ function GridLayout() {
                   <img
                     className="w-full h-full object-cover"
                     src={image}
-                    alt=""
+                    alt="gamepic"
                   />
                 </div>
                 <article className="mt-2 h-16 pl-1 flex flex-col">
-                  <h1 className="capitalize font-secondary text-[12px]">
+                  <h1 className="capitalize font-secondary xl:hidden text-[12px] xl:text-[16px]">
                     {truncateString(name, 13)}
                   </h1>
-                  <div className="flex items-center  flex-row font-thin">
+                  <h1 className="capitalize hidden xl:block font-secondary text-[12px] xl:text-[16px]">
+                    {truncateString(name, 16)}
+                  </h1>
+                  <div className="flex items-center mt-1 flex-row font-thin">
                     <FaStar className="text-amber-400 mr-2" />
-                    8/10
+                    <span className="pt-1 md:pt-0">
+                      {truncateRating(
+                        currRating?.averageRating.toLocaleString(),
+                        3
+                      )}{" "}
+                      / 10
+                    </span>
                   </div>
                 </article>
 

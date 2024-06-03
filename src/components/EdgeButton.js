@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { MdOutlineArrowRight, MdOutlineArrowLeft } from "react-icons/md";
+import { IoMdArrowDropup, IoMdArrowDropdown } from "react-icons/io";
 import WishListButton from "../layout/navigation/desktop/userspanel/WishListButton";
 import CartButton from "../layout/navigation/desktop/userspanel/CartButton";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+import { RiSearchLine } from "react-icons/ri";
+import UserSettings from "../layout/navigation/desktop/userspanel/UserSettings";
 
 const edgeVariant = {
   hidden: {
-    left: 0,
+    bottom: "-30px",
   },
   visible: {
-    left: "-138px",
+    bottom: 0,
     transition: {
       duration: 0.3,
     },
@@ -18,8 +20,9 @@ const edgeVariant = {
 };
 
 function EdgeButton() {
-  const [flip, setFlip] = useState(false);
+  const [flip, setFlip] = useState(true);
   const { userReg } = useSelector((store) => store.user);
+  const [settings, setSettings] = useState(false);
 
   return (
     <>
@@ -27,25 +30,37 @@ function EdgeButton() {
         <motion.div
           variants={edgeVariant}
           animate={flip ? "hidden" : "visible"}
-          className="w-[150px] h-16 flex xl:hidden rounded-r-xl bg-skewHover z-10 fixed top-20 overflow-hidden"
+          className="w-full flex flex-col xl:hidden z-20 fixed bottom-0"
         >
-          <div
-            className="flex flex-col items-start text-md
-       capitalize font-tetriary w-full"
-          >
-            <WishListButton />
-            <CartButton />
+          <div className="w-full h-3 center">
+            <div
+              onClick={() => {
+                setFlip(!flip);
+                if (settings) {
+                  setSettings(false);
+                }
+              }}
+              className="w-20 rounded-t-xl center bg-stone-800 cursor-pointer"
+            >
+              {flip ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
+            </div>
           </div>
-          <div
-            onClick={() => setFlip(!flip)}
-            className="w-3 rounded-r-xl h-auto relative cursor-pointer"
-          >
-            {flip ? (
-              <MdOutlineArrowLeft className="absolute top-3 -left-[15px] w-10 h-10" />
-            ) : (
-              <MdOutlineArrowRight className="absolute top-3 -left-[15px] w-10 h-10" />
-            )}
+          <div className="flex flex-row items-center bg-stone-800 justify-between text-md capitalize font-tetriary w-full py-1">
+            <div className="flex flex-row">
+              <WishListButton />
+              <CartButton />
+            </div>
+            <div className="flex flex-row items-center space-x-2 mr-3 *:duration-300 hover:*:text-amber-400 *:hover:cursor-pointer">
+              <RiSearchLine size={20} />
+              <img
+                onClick={() => setSettings(!settings)}
+                src={userReg?.userAvatar}
+                className="w-7 h-7 object-cover rounded-full"
+                alt=""
+              />
+            </div>
           </div>
+          {settings && <UserSettings settings={settings} />}
         </motion.div>
       ) : (
         ""

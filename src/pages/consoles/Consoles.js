@@ -7,7 +7,7 @@ function Consoles() {
       <Helmet>
         <title>GAMEBASE | Consoles</title>
       </Helmet>
-      <div className="*:m-5 *:text-violet-500 w-full center">hello world</div>
+      <div className="*:m-5 *:text-violet-500 w-full center"></div>
     </main>
   );
 }
