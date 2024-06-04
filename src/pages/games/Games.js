@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet";
 import LayoutButtons from "./games-components/LayoutButtons";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getAverageRating } from "../../features/gamesSlice";
 
 function Games() {

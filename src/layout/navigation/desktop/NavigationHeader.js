@@ -15,13 +15,7 @@ import {
   getUserWishlistGames,
   logOutUser,
 } from "../../../features/user";
-import {
-  collection,
-  doc,
-  getDocs,
-  onSnapshot,
-  setDoc,
-} from "firebase/firestore";
+import { collection, doc, getDocs, onSnapshot } from "firebase/firestore";
 import Bug from "./bug/Bug";
 
 function NavigationHeader() {

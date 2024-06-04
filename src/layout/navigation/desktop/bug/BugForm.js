@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import BorderSvg from "../../../../components/BorderSvg";
-import { addDoc, collection, doc, getDocs } from "firebase/firestore";
+import { addDoc, collection, doc } from "firebase/firestore";
 import { db } from "../../../../firebase/firebase";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
