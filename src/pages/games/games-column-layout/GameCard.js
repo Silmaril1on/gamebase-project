@@ -115,7 +115,7 @@ function GameCard({
           </h1>
           <div className="flex flex-row items-center">
             <FaStar className="text-amber-400 mr-2 text-xs md:text-lg" />
-            <span className=" relative w-14 h-5 *:text-xs *:md:text-lg flex flex-row items-center justify-start">
+            <span className=" relative w-20 h-5 *:text-xs *:md:text-lg flex flex-row items-center justify-start">
               {loading ? (
                 <Loader />
               ) : (

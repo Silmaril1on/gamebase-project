@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import Button from "../../../../components/Button";
 import { closeModal } from "../../../../features/gamesSlice";
-import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../../../../firebase/firebase";
 
 function Stars({
@@ -15,48 +15,28 @@ function Stars({
   const [hover, setHover] = useState(null);
   const gameRatingRef = doc(db, "games", `${details.name}`);
 
-  // const updateRating = async () => {
-  //   const found = await getDoc(gameRatingRef);
-  //   if (!found.exists()) {
-  //     await setDoc(gameRatingRef, {
-  //       ratings: arrayUnion({
-  //         gameRating: Number(initialRating),
-  //         email: auth.currentUser?.email,
-  //         author: auth.currentUser?.displayName,
-  //         createdAt: new Date().toDateString(),
-  //       }),
-  //     });
-  //   } else {
-  //     await updateDoc(gameRatingRef, {
-  //       ratings: arrayUnion({
-  //         gameRating: Number(initialRating),
-  //         email: auth.currentUser?.email,
-  //         author: auth.currentUser?.displayName,
-  //         createdAt: new Date().toDateString(),
-  //       }),
-  //     });
-  //   }
-  // };
-
   const updateRating = async () => {
     const found = await getDoc(gameRatingRef);
     const rating = (found.data() || {}).ratings || [];
     const myRating = rating.find((r) => r.email === auth.currentUser?.email);
     if (!myRating) {
       await setDoc(gameRatingRef, {
-        ratings: arrayUnion({
-          gameRating: initialRating,
-          email: auth.currentUser?.email,
-          author: auth.currentUser?.displayName,
-          createdAt: new Date().toDateString(),
-        }),
+        ratings: [
+          ...(rating || []),
+          {
+            gameRating: Number(initialRating),
+            email: auth.currentUser?.email,
+            author: auth.currentUser?.displayName,
+            createdAt: new Date().toDateString(),
+          },
+        ],
       });
     } else {
       const newRating = rating.map((m) => {
         if (m.email === auth.currentUser?.email) {
           m = {
             ...m,
-            gameRating: initialRating,
+            gameRating: Number(initialRating),
             createdAt: new Date().toDateString(),
           };
         }

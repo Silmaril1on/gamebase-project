@@ -7,7 +7,13 @@ function RatingCount({ details }) {
   const [ratingsData, setRatingsData] = useState([]);
   const ratingsRef = collection(db, "games");
   const [currentGameRating, setCurrentGameRating] = useState(null);
+  const currentGame = details?.name;
+  const filt = ratingsData.find((item) => item.id === currentGame);
+  const filteredRatings = filt?.ratings;
+  const gameRating = filteredRatings?.map((item) => item.gameRating);
+  const gameRatingRef = doc(db, "average-ratings", `${details.name}`);
 
+  // get all games rating data
   useEffect(() => {
     const getRatingData = async () => {
       const data = await getDocs(ratingsRef);
@@ -21,12 +27,7 @@ function RatingCount({ details }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const currentGame = details?.name;
-  const filt = ratingsData.find((item) => item.id === currentGame);
-  const filteredRatings = filt?.ratings;
-  const ratingsArr = filteredRatings?.map((item) => item.gameRating);
-  const gameRatingRef = doc(db, "gamesratings", `${details.name}`);
-
+  // add average rating data to specific game
   useEffect(() => {
     const addAverageRating = async () => {
       await setDoc(gameRatingRef, {
@@ -36,18 +37,19 @@ function RatingCount({ details }) {
     addAverageRating();
   }, [currentGameRating, gameRatingRef]);
 
+  //calculate average rating for games
   useEffect(() => {
     const findAverage = () => {
       let sum = 0;
-      for (let i = 0; i < ratingsArr?.length; i++) {
-        sum += ratingsArr[i];
+      for (let i = 0; i < gameRating?.length; i++) {
+        sum += gameRating[i];
       }
-      let average = sum / ratingsArr?.length;
+      let average = sum / gameRating?.length;
       setCurrentGameRating(average);
       return average;
     };
     findAverage();
-  }, [ratingsArr]);
+  }, [gameRating]);
 
   const truncateString = (str, num) => {
     if (str?.length > num) {
@@ -74,7 +76,7 @@ function RatingCount({ details }) {
         </div>
         <div className="text-xs  ml-2 pt-3 flex flex-row items-center">
           <FaUser size={10} className="text-amber-400 mr-1" />
-          {ratingsArr?.length}
+          {gameRating?.length}
         </div>
       </div>
     </div>

@@ -108,7 +108,7 @@ function GameCard({
           </h1>
           <div className="flex flex-row items-center">
             <FaStar className="text-amber-400 mr-2 text-xs md:text-lg" />
-            <span className="relative w-14 h-5 *:text-xs *:md:text-lg flex flex-row items-center justifyy-start">
+            <span className="relative w-20 h-5 *:text-xs *:md:text-lg flex flex-row items-center justifyy-start">
               {loading ? (
                 <Loader />
               ) : (
@@ -134,6 +134,7 @@ function GameCard({
             {free}
           </h6>
         </article>
+
         <section className="space-y-2 backdrop-blur-sm absolute w-full h-full top-0 left-0 bg-600 flexCol items-center scale-0 group group-hover:scale-100 duration-300 justify-center">
           <NavLink to="/gamepage" state={{ game }}>
             <button className="cream-button text-xs md:text-sm">

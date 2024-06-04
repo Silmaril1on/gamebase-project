@@ -15,6 +15,22 @@ export const animatePath = {
   },
 };
 
+export const staggerRight = {
+  hidden: {
+    // left: "100%",
+    opacity: 0,
+  },
+  visible: {
+    // left: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.4,
+      staggerChildren: 0.2,
+      delayChildren: 0.2,
+    },
+  },
+};
+
 export const loadingPath = {
   hidden: {
     opacity: 0,

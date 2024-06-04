@@ -8,19 +8,18 @@ import { Helmet } from "react-helmet";
 import LayoutButtons from "./games-components/LayoutButtons";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAverageRating } from "../../features/gamesSlice";
 
 function Games() {
   const [layout, setLayout] = useState(true);
   const dispatch = useDispatch();
-  const ratingsRef = collection(db, "gamesratings");
+  const ratingsRef = collection(db, "average-ratings");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getGameRatings = async () => {
       setLoading(true);
-
       const data = await getDocs(ratingsRef);
       const gameRatings = data.docs.map((doc) => ({
         ...doc.data(),
